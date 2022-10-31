@@ -1,0 +1,40 @@
+@use "app/styles/use/typography";
+@use "app/styles/use/colors";
+
+
+.faq {
+  margin-top: 135px;
+
+  &__body {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    background-color: #F9F9FA;
+    padding: 100px 90px 115px 90px;
+    margin: 0 -50px;
+  }
+
+  &__left {
+    width: 533px;
+  }
+
+  &__title {
+    font-size: 60px;
+    line-height: 72px;
+    color: colors.$colorText;
+    margin-bottom: 50px;
+
+    svg {
+      vertical-align: middle;
+    }
+  }
+
+  &__link {
+    @include typography.ButtonLink();
+  }
+
+  &__right {
+    width: 665px;
+    margin-top: 25px;
+  }
+}

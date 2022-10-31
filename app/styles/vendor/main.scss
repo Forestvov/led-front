@@ -1,0 +1,95 @@
+@use "app/styles/use/utils";
+
+html {
+  box-sizing: border-box;
+  height: 100%;
+  scroll-behavior: auto;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+  font-size: 18px;
+}
+
+body {
+  background-color: #fff;
+  color: #191C20;
+  min-width: 375px;
+  position: relative;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  list-style: none;
+}
+
+ul,
+ol,
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+button:focus,
+input:focus {
+  outline: transparent;
+}
+
+button {
+  padding: 0;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+
+  @include utils.media-max-width(500px) {
+    cursor: auto;
+  }
+}
+
+.container {
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+
+  @include utils.media-max-width(1600) {
+    max-width: 1160px;
+  }
+
+  @include utils.media-max-width(1279) {
+    max-width: 960px;
+  }
+
+  @include utils.media-max-width(1023) {
+    max-width: 708px;
+  }
+
+  @include utils.media-max-width(767) {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+}

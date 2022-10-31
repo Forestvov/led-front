@@ -1,0 +1,21 @@
+.slider {
+  margin-top: 195px;
+  margin-bottom: 44px;
+
+  &__inner {
+    & > div {
+      transition-timing-function: linear;
+    }
+  }
+
+  &__item {
+    width: fit-content !important;
+  }
+
+  &__link {
+    color: rgba(173, 178, 182, 0.17);
+    font-weight: 800;
+    font-size: 110px;
+    line-height: 132px;
+  }
+}

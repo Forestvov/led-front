@@ -1,0 +1,65 @@
+@use "app/styles/use/utils";
+@use "app/styles/use/typography";
+
+.team {
+  @include utils.padding-hack(1005px);
+
+  &__title {
+    @include typography.sectionTitle(#fff);
+    position: absolute;
+    bottom: 142px;
+  }
+
+  &__action {
+    position: absolute;
+    top: 103px;
+    display: flex;
+    width: 375px;
+    height: 130px;
+
+    &_circle {
+      margin-top: 40px;
+    }
+
+    &_link {
+      margin-top: 40px;
+      width: 90px;
+      height: 90px;
+      background: rgba(255, 255, 255, 0.2);
+      border: 2px solid #FFFFFF;
+      backdrop-filter: blur(5px);
+      border-radius: 50%;
+      position: absolute;
+      left: 59px;
+      transition: transform 400ms;
+
+      &:hover {
+        transform: rotate(90deg);
+      }
+
+      span {
+        display: block;
+        background-color: #fff;
+        border-radius: 9px;
+        position: absolute;
+        @include utils.absoluteXY();
+      }
+
+      span:first-child {
+        width: 23px;
+        height: 3px;
+      }
+
+      span:last-child {
+        height: 23px;
+        width: 3px;
+      }
+    }
+
+    &_icon {
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./app/",
+    "paths": {
+      "@/ui/*": ["ui/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/styles/*": ["styles/*"]
+    }
+  }
+}

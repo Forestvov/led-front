@@ -1,0 +1,48 @@
+@use "app/styles/use/colors";
+@use "app/styles/use/utils";
+
+@mixin sectionTitle($color) {
+  color: $color;
+  font-size: 72px;
+  line-height: 86px;
+  font-weight: 600;
+  margin-left: -3px;
+
+  @media only screen and (max-width: 500px) {
+    //font-size: 24px;
+    //line-height: 32.2px;
+  }
+
+  @include utils.media-max-width(1600) {
+    font-size: 58px;
+    line-height: 69.6px;
+  }
+
+  @include utils.media-max-width(1279) {
+    font-size: 48px;
+    line-height: 57.6px;
+  }
+
+  @include utils.media-max-width(1023) {
+    font-size: 40px;
+    line-height: 48px;
+  }
+
+  @include utils.media-max-width(767) {
+    font-size: 28px;
+    line-height: 33.6px;
+  }
+}
+
+@mixin ButtonLink() {
+  display: inline-block;
+  border: 1px solid #DBD7E3;
+  border-radius: 35px;
+  line-height: 70px;
+  height: 70px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: colors.$colorText;
+  padding: 0 38px;
+}

@@ -1,0 +1,89 @@
+@use "app/styles/use/colors";
+@use "app/styles/use/utils";
+
+.navigation {
+  margin-top: 5px;
+  display: block;
+
+  a{
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 16px;
+    margin-left: 34px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    &:hover {
+      .navigation_title span {
+        transform: translateY(-105%);
+
+        &:before {
+          transform: skewY(7deg);
+        }
+
+        &:after {
+          transform: skewY(0deg);
+        }
+      }
+    }
+
+    @include utils.media-max-width(1600) {
+        font-size: 15px;
+      margin-left: 30px;
+    }
+  }
+
+  &_title {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+
+    & span {
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+      color: transparent;
+      transition: transform 2s cubic-bezier(.19,1,.22,1),
+      -webkit-transform 2s cubic-bezier(.19,1,.22,1),
+      -moz-transform 2s cubic-bezier(.19,1,.22,1),
+      -o-transform 2s cubic-bezier(.19,1,.22,1);
+
+      &:before,
+      &:after {
+        content: attr(data-text);
+        display: block;
+        position: absolute;
+        transition: transform 2s cubic-bezier(.19,1,.22,1),
+        -webkit-transform 2s cubic-bezier(.19,1,.22,1),
+        -moz-transform 2s cubic-bezier(.19,1,.22,1),
+        -o-transform 2s cubic-bezier(.19,1,.22,1);
+      }
+
+      &:before {
+        color: #ffffff;
+        top: 0;
+        transform: skewY(0);
+        transform-origin: right bottom;
+      }
+
+      &:after {
+        color: #ffffff;
+        top: 105%;
+        transform: skewY(7deg);
+        transform-origin: left top;
+      }
+    }
+  }
+
+  .icon {
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: colors.$purple;
+    top: -8px;
+    right: -7px;
+  }
+}

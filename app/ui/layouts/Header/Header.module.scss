@@ -1,0 +1,76 @@
+@use "app/styles/use/colors";
+@use "app/styles/use/utils";
+
+.header {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  padding-top: 39px;
+  padding-bottom: 34px;
+  border-bottom: 1px solid rgba(241, 241, 241, 0.1);
+  z-index: 2;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    color: #fff;
+    display: flex;
+    align-items: center;
+
+    svg {
+      margin-top: -3px;
+    }
+
+    &_text {
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 21px;
+      width: 133px;
+      margin-left: 18px;
+      display: block;
+    }
+  }
+
+  &__navigation {
+    margin-left: auto;
+  }
+
+  &__project {
+    margin-left: 62px;
+    background-color: colors.$bgLink;
+    color: colors.$colorText;
+    width: 178px;
+    line-height: 48px;
+    border-radius: 32px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 15px;
+  }
+
+  @include utils.media-max-width(1600) {
+    padding-bottom: 27px;
+    padding-top: 30px;
+
+    &__logo {
+      svg {
+        width: 65px;
+      }
+    }
+
+    &__project {
+      font-size: 14px;
+      width: 166px;
+    }
+  }
+
+  @include utils.media-max-width(1279) {
+    &__navigation {
+      display: none;
+    }
+  }
+}

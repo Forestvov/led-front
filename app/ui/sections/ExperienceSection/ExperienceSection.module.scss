@@ -1,0 +1,95 @@
+@use "app/styles/use/typography";
+@use "app/styles/use/colors";
+@use "app/styles/use/utils";
+
+
+.experience {
+  background-color: colors.$colorText;
+  padding: 130px 0 140px;
+
+  &__body {
+    color: #fff;
+  }
+
+  &__title {
+    @include typography.sectionTitle(#fff);
+    max-width: 1000px;
+    margin-bottom: 80px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+  }
+
+  &__inner {
+    display: grid;
+    grid-template-columns: 423px 1fr;
+    grid-column-gap: 190px;
+    align-items: start;
+  }
+
+  &__image {
+    @include utils.padding-hack(527px);
+
+    img {
+      border-radius: 20px;
+    }
+
+    &::before {
+      position: absolute;
+      content: '';
+      border-radius: 20px;
+      width: 100%;
+      height: 100%;
+      left: 0;
+      top: 0;
+      z-index: 1;
+      background: linear-gradient(0deg, rgba(30, 9, 75, 0.05), rgba(30, 9, 75, 0.05)), linear-gradient(360deg, rgba(9, 10, 55, 0.2) 0%, rgba(7, 8, 35, 0) 34.3%, rgba(255, 255, 255, 0) 41.95%), linear-gradient(0deg, rgba(51, 23, 86, 0.18) 0%, rgba(130, 131, 221, 0) 52.78%);
+    }
+  }
+
+  &__info {
+    margin-top: 49px;
+    &_position {
+      color: #B9C2CF;
+      font-weight: 600;
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    &_name {
+      font-weight: 600;
+      font-size: 46px;
+      line-height: 57.5px;
+      margin-bottom: 26px;
+    }
+
+    &_description {
+      font-weight: 500;
+      line-height: 51px;
+      font-size: 32px;
+      margin-bottom: 57px;
+    }
+
+    &_more {
+      color: #fff;
+      font-weight: 600;
+      font-size: 16px;
+      line-height: 10px;
+      position: relative;
+      padding-bottom: 4px;
+
+      &::before{
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 1px;
+        background-color: #fff;
+        bottom: 0;
+        left: 0;
+      }
+    }
+
+    &_link {
+      @include typography.ButtonLink();
+      background-color: #fff;
+    }
+  }
+}

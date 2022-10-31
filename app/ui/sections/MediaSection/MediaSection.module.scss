@@ -1,0 +1,22 @@
+@use "app/styles/use/typography";
+@use "app/styles/use/colors";
+
+.media {
+  padding-top: 132px;
+
+  &__inner {
+
+  }
+
+  &__title {
+    @include typography.sectionTitle(colors.$colorText);
+    margin-bottom: 63px;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-left: -20px;
+  }
+}

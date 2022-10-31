@@ -1,0 +1,52 @@
+@use "app/styles/use/utils";
+@use "app/styles/use/typography";
+
+.brief {
+  height: 100vh;
+  position: relative;
+
+  &__container {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__content {
+    position: relative;
+    text-align: center;
+    z-index: 1;
+  }
+
+  &__title {
+    @include typography.sectionTitle(#000);
+    max-width: 600px;
+  }
+
+  &__link {
+    margin-top: 55px;
+    @include typography.ButtonLink();
+  }
+
+
+  &__actions {
+    position: absolute;
+    z-index: 1;
+    bottom: 64px;
+    left: 0;
+    width: 100%;
+  }
+
+  &__bg {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    -o-object-fit: cover;
+    object-fit: cover;
+    pointer-events: none;
+    top: 0;
+    width: 100%;
+    z-index: 0;
+  }
+}

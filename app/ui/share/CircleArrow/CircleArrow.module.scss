@@ -1,0 +1,17 @@
+@use "app/styles/use/colors";
+@use "app/styles/use/utils";
+
+.circle {
+  width: 42px;
+  height: 42px;
+  background-color: colors.$colorText;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include utils.media-max-width(1600){
+    width: 39px;
+    height: 39px;
+  }
+}

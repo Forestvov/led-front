@@ -1,0 +1,62 @@
+@use "app/styles/use/colors";
+@use "app/styles/use/utils";
+
+.item {
+  border-top: 1px solid rgba(219, 225, 228, 0.75);
+  padding-top: 29px;
+  padding-bottom: 29px;
+
+  &:last-child {
+    border-bottom: 1px solid rgba(219, 225, 228, 0.75);
+  }
+
+  &__header {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 21.6px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+  }
+
+  &__title {
+    padding-right: 40px;
+  }
+
+  &__button {
+    position: absolute;
+    @include utils.absoluteYCenter();
+    right: 0;
+    width: 18px;
+    transition: 400ms;
+
+    &.active {
+      transform: rotate(45deg);
+    }
+
+    span {
+      background-color: colors.$colorText;
+      @include utils.absoluteXY();
+      display: block;
+      position: absolute;
+    }
+
+    span:first-child{
+      width: 18px;
+      height: 2px;
+    }
+    span:last-child{
+      height: 18px;
+      width: 2px;
+    }
+  }
+
+  &__text {
+    font-weight: 500;
+    line-height: 27.2px;
+    font-size: 17px;
+    padding-top: 10px;
+  }
+
+}

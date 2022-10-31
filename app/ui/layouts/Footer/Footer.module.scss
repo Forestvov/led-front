@@ -1,0 +1,194 @@
+@use "app/styles/use/colors";
+
+.footer {
+  padding-top: 65px;
+  border-top: 1px solid #F0F0F0;
+  padding-bottom: 32px;
+  background-image: url('/images/bg__foter.png');
+  background-position: bottom;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  a {
+    color: colors.$colorText;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 560px 1fr 255px;
+    align-items: flex-start;
+    margin-right: -40px;
+
+    & + & {
+      margin-top: 113px;
+    }
+  }
+
+  &__col {
+
+  }
+
+  &__logo {
+    display: flex;
+    align-items: center;
+
+    &_icon {
+
+    }
+
+    &_text {
+      width: 133px;
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 21px;
+      margin-left: 18px;
+    }
+  }
+
+  &__navigation {
+    li {
+      position: relative;
+      width: fit-content;
+    }
+
+    li + li {
+      margin-top: 6px;
+    }
+
+    a {
+      font-size: 17px;
+      line-height: 23.8px;
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+
+      &:hover {
+        span {
+          transform: translateY(-105%);
+
+          &:before {
+            transform: skewY(7deg);
+          }
+
+          &:after {
+            transform: skewY(0deg);
+          }
+        }
+      }
+
+      & span {
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+        color: transparent;
+        transition: transform 2s cubic-bezier(.19, 1, .22, 1),
+        -webkit-transform 2s cubic-bezier(.19, 1, .22, 1),
+        -moz-transform 2s cubic-bezier(.19, 1, .22, 1),
+        -o-transform 2s cubic-bezier(.19, 1, .22, 1);
+
+        &:before,
+        &:after {
+          content: attr(data-text);
+          display: block;
+          position: absolute;
+          transition: transform 2s cubic-bezier(.19, 1, .22, 1),
+          -webkit-transform 2s cubic-bezier(.19, 1, .22, 1),
+          -moz-transform 2s cubic-bezier(.19, 1, .22, 1),
+          -o-transform 2s cubic-bezier(.19, 1, .22, 1);
+        }
+
+        &:before {
+          color: colors.$colorText;
+          top: 0;
+          transform: skewY(0);
+          transform-origin: right bottom;
+        }
+
+        &:after {
+          color: colors.$colorText;
+          top: 105%;
+          transform: skewY(7deg);
+          transform-origin: left top;
+        }
+      }
+    }
+
+    .icon {
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background-color: colors.$purple;
+      top: -2px;
+      right: -8px;
+    }
+
+  }
+
+  &__contacts {
+    margin-top: 5px;
+  }
+
+  &__email {
+    margin-bottom: 65px;
+
+    &_label {
+      color: #B1B6BE;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 2px;
+    }
+
+    &_link {
+      color: colors.$colorText;
+      font-size: 21px;
+      line-height: 29px;
+      font-weight: 600;
+    }
+  }
+
+  &__brief {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    font-weight: 600;
+    color: colors.$colorText;
+    font-size: 17px;
+    margin-bottom: 22px;
+
+    &_icon {
+      margin-right: 16px;
+    }
+  }
+
+  &__pdf {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+
+    &_info {
+      font-weight: 600;
+      font-size: 17px;
+      line-height: 17px;
+      color: colors.$colorText;
+    }
+
+    &_icon {
+      margin-right: 16px;
+    }
+
+    &_size {
+      font-weight: 400;
+      font-size: 14px;
+      color: #B1B6BE;
+      font-feature-settings: 'pnum' on, 'lnum' on;
+    }
+  }
+
+  &__bottom {
+    font-size: 15px;
+    a{
+      font-size: 15px;
+    }
+  }
+}

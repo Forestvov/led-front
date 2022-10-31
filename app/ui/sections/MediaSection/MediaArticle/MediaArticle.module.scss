@@ -1,0 +1,34 @@
+@use "app/styles/use/utils";
+@use "app/styles/use/colors";
+
+
+.article {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  flex-basis: calc(25% - 20px);
+  border: 1px solid #E8E8E8;
+  padding: 46px 42px 52px 40px;
+  display: flex;
+  flex-direction: column;
+  height: 411px;
+  color: colors.$colorText;
+
+  &__title {
+    font-weight: 600;
+    line-height: 28px;
+    font-size: 21px;
+  }
+
+  &__portal {
+    margin-top: auto;
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  &__date {
+    color: #B8B8B8;
+    font-size: 14px;
+    font-weight: 400;
+  }
+}

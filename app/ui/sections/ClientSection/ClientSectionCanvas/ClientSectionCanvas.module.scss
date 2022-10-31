@@ -1,0 +1,14 @@
+.canvas {
+  position: absolute;
+  height: 100%;
+  filter: blur(80px);
+  width: 300px;
+
+  &.left {
+    left: 0;
+  }
+
+  &.right {
+    right: 0;
+  }
+}

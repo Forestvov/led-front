@@ -1,0 +1,18 @@
+@use "app/styles/use/utils";
+
+.item {
+  position: relative;
+  margin: -40px 0 0 -40px;
+  flex: 0 0 calc(25% + 40px);
+  width: calc(25% + 40px);
+
+  &__outline {
+    transition-duration: .4s;
+    transition-timing-function: cubic-bezier(.25,.74,.22,.99);
+  }
+
+  img {
+    position: absolute;
+    @include utils.absoluteXY();
+  }
+}

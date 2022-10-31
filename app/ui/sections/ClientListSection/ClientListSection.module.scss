@@ -1,0 +1,25 @@
+@use "app/styles/use/typography";
+
+.list {
+  padding-top: 130px;
+  padding-bottom: 160px;
+
+  &__title {
+    @include typography.sectionTitle(#000);
+    margin-bottom: 140px;
+  }
+
+  &__items {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 40px;
+  }
+
+  &__more {
+    @include typography.ButtonLink();
+    margin: 75px auto 0;
+    display: block;
+    transition: 400ms;
+  }
+}

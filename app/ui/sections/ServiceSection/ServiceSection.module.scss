@@ -1,0 +1,74 @@
+@use "app/styles/use/typography";
+@use "app/styles/use/colors";
+@use "app/styles/use/utils";
+
+.service {
+  padding: 160px 0;
+  &__container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  &__left {
+    margin-top: 48px;
+    max-width: 501px;
+  }
+
+  &__title {
+    @include typography.sectionTitle(colors.$colorText);
+    margin-bottom: 30px;
+    margin-left: 0;
+  }
+
+  &__text {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 32px;
+    margin-bottom: 49px;
+  }
+
+  &__brif {
+    @include typography.ButtonLink();
+  }
+
+  &__right {
+    max-width: 826px;
+  }
+
+  &__cards {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &__more {
+    width: 280px;
+    line-height: 70px;
+    height: 70px;
+    @include utils.flexCenter();
+    background: rgba(33, 40, 49, 0.04);
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 17px;
+    margin: 60px auto 0;
+    i {
+      margin-right: 8px;
+    }
+
+    &:hover i svg {
+      animation: move 1.5s infinite linear;
+    }
+  }
+}
+
+@keyframes move {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

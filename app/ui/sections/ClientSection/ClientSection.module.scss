@@ -1,0 +1,59 @@
+@use "app/styles/use/colors";
+@use "app/styles/use/typography";
+
+.clients {
+  background-color: colors.$colorText;
+
+  &__inner {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__circle {
+    width: 600px;
+    height: 600px;
+    filter: blur(150px);
+    position: absolute;
+  }
+
+  &__circle_left {
+    background: rgba(54, 62, 248, 0.7);
+    top: -285px;
+    left: -325px;
+  }
+
+  &__circle_right {
+    background: rgba(199, 39, 255, 0.7);
+    right: -368px;
+    bottom: -355px;
+  }
+
+  &__container {
+    padding: 129px 0 94px;
+    position: relative;
+    z-index: 1;
+  }
+
+  &__content {
+
+  }
+
+  &__title {
+    @include typography.sectionTitle(#fff);
+    margin-bottom: 104px;
+    margin-left: 0;
+  }
+
+  &__items {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    padding-left: 10px;
+    grid-column-gap: 7px;
+    align-items: center;
+    grid-row-gap: 80px;
+  }
+
+  &__icon {
+    text-align: center;
+  }
+}

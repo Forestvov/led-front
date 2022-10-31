@@ -1,0 +1,66 @@
+@use "app/styles/use/utils";
+
+.actions{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &.black {
+    a{
+      color: #000;
+    }
+
+    svg path {
+      fill: #000;
+    }
+  }
+
+  a {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+
+    i {
+      margin-right: 8px;
+    }
+
+    span {
+      text-decoration: underline;
+    }
+  }
+
+  &__scroll {
+    margin-right: 20px;
+    animation: spin 4s infinite ease-in;
+  }
+
+  &__telegram {
+    i {
+      margin-top: 3px;
+    }
+  }
+
+  @include utils.media-max-width(1600){
+    a{
+      font-size: 17px;
+    }
+
+    &__scroll{
+      margin-right: 10px;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: translate3d(0, -20%, 0);
+  }
+  50% {
+    transform: translate3d(0, 20%, 0);
+  }
+  100% {
+    transform: translate3d(0, -20%, 0);
+  }
+}

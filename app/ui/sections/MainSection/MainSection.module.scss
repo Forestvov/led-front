@@ -1,0 +1,80 @@
+@use "app/styles/use/utils";
+@use "app/styles/use/typography";
+
+.main {
+  height: 100vh;
+  background-color: #000;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &::before {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(360deg, rgba(228, 58, 232, 0.2) 0%, rgba(4, 69, 236, 0.2) 98.85%);
+    z-index: 1;
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+  }
+
+  &__title {
+    margin-bottom: 63px;
+    @include typography.sectionTitle(#fff);
+  }
+
+  .main__video {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  &__brif {
+    width: 235px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 35px;
+    padding-left: 15px;
+    font-weight: 600;
+    font-size: 17px;
+
+    &_icon {
+      flex: 0 0 auto;
+      margin-right: 15px;
+    }
+  }
+
+  &__actions {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 55px;
+    z-index: 2;
+  }
+
+  @include utils.media-max-width(1600) {
+
+    &__title {
+      margin-bottom: 52px;
+    }
+
+    &__brif {
+      font-size: 16px;
+      height: 65px;
+      width: 223px;
+    }
+  }
+}
+

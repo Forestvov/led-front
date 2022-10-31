@@ -1,0 +1,35 @@
+@use "app/styles/use/colors";
+
+
+.item {
+  display: flex;
+  font-weight: 600;
+
+  &__number {
+    width: 45px;
+    height: 45px;
+    border-radius: 8px;
+    background: linear-gradient(102.16deg, rgba(130, 131, 221, 0.17) -116.66%, rgba(130, 131, 221, 0) 188.87%);
+    transform: rotate(-45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__value {
+    display: block;
+    transform: rotate(45deg);
+    color: #7E80E5;
+    font-size: 16px;
+    line-height: 16px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+  }
+
+  &__title{
+    font-size: 18px;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    margin-top: 48px;
+    margin-left: 10px;
+    display: block;
+  }
+}
