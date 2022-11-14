@@ -1,66 +1,21 @@
 import cn from 'classnames'
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import AnimateHeight from 'react-animate-height'
 import StickyBox from 'react-sticky-box'
 
-import { ServiceCard, SpinIcon } from '@/ui/index'
+import { CircleArrowIcon, CircleIcon, ServiceCard, SpinIcon } from '@/ui/index'
+
+import useWindowSize from '@/hooks/useWindowSize'
 
 import s from './ServiceSection.module.scss'
 
-const cards = [
-  {
-    icon: '/moc/icons/icon-1.svg',
-    title: 'Разработка PR стратегий',
-    text: 'Мы поможем разработать позиционирование, показать ваши преимущества и заявить о себе на подходящих площадках.',
-    colorFirst: '#FAC7EE',
-    colorSecond: '#FFE7FC'
-  },
-  {
-    icon: '/moc/icons/icon-2.svg',
-    title: 'Комплексное PR сопровождение',
-    text: 'Мы поможем разработать позиционирование, показать ваши преимущества и заявить о себе на подходящих площадках.',
-    colorFirst: '#CCB0FA',
-    colorSecond: '#E5D7FF'
-  },
-  {
-    icon: '/moc/icons/icon-3.svg',
-    title: 'Мониторинг и аналитика',
-    text: 'Мы поможем разработать позиционирование, показать ваши преимущества и заявить о себе на подходящих площадках.',
-    colorFirst: '#BAE9F7',
-    colorSecond: '#DAFDFF'
-  },
-  {
-    icon: '/moc/icons/icon-4.svg',
-    title: 'Продвижение личного бренда',
-    text: 'Мы поможем разработать позиционирование, показать ваши преимущества и заявить о себе на подходящих площадках.',
-    colorFirst: '#FCFCFF',
-    colorSecond: '#FCFCFC'
-  },
-  {
-    icon: '/moc/icons/icon-5.svg',
-    title: 'PR поддержка HR бренда',
-    text: 'Мы поможем разработать позиционирование, показать ваши преимущества и заявить о себе на подходящих площадках.',
-    colorFirst: '#FAD967',
-    colorSecond: '#FFED99'
-  },
-  {
-    icon: '/moc/icons/icon-6.svg',
-    title: 'Инвестиционный PR',
-    text: 'Мы поможем разработать позиционирование, показать ваши преимущества и заявить о себе на подходящих площадках.',
-    colorFirst: '#C8E780',
-    colorSecond: '#E3FCA2'
-  },
-  {
-    icon: '/moc/icons/icon-1.svg',
-    title: 'Разработка PR стратегий',
-    text: 'Мы поможем разработать позиционирование, показать ваши преимущества и заявить о себе на подходящих площадках.',
-    colorFirst: '#FAC7EE',
-    colorSecond: '#FFE7FC'
-  }
-]
+export const ServiceSection = props => {
+  const { ctxBlock, textUsUrl, briefUrl, services } = props
 
-export const ServiceSection = () => {
   const [showPer, setShowPer] = useState(6)
+  const showreelCursorRef = useRef(null)
+
+  const { width } = useWindowSize()
 
   const setPosition = (idx, lengthArray) => {
     switch (lengthArray % 2) {
@@ -107,49 +62,85 @@ export const ServiceSection = () => {
     }
   }
 
-  const lengthCutArr = cards.slice(6).length
+  const lengthCutArr = services.slice(6).length
+
+  const moveShowreelCursor = e => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const iconHeightHalf = showreelCursorRef.current.offsetHeight / 2
+    const iconWidthHalf = showreelCursorRef.current.offsetWidth / 2
+    showreelCursorRef.current.style.left =
+      e.clientX - rect.x - iconWidthHalf + 'px'
+    showreelCursorRef.current.style.top =
+      e.clientY - rect.y - iconHeightHalf + 'px'
+  }
 
   return (
     <section id='service' className={s.service}>
       <div className={cn('container', s.service__container)}>
-        <StickyBox>
+        <StickyBox className={s.service__sticky}>
           <div className={s.service__left}>
-            <h2 className={s.service__title}>Услуги</h2>
-            <p className={s.service__text}>
-              Готовим и проводим бизнес-мероприятия, строим HR и личный бренд,
-              ищем пиарщиков в штат и обучаем их, консультируем и разрабатываем
-              PR-стратегию, а также разгоняем ваш рост в рейтингах.
-            </p>
-            <a className={s.service__brif}>Заполнить бриф</a>
+            <h2
+              className={s.service__title}
+              dangerouslySetInnerHTML={{ __html: ctxBlock.title }}
+            />
+            <div
+              className={s.service__text}
+              dangerouslySetInnerHTML={{ __html: ctxBlock.description }}
+            />
+            <a
+              className={s.service__brif}
+              href={briefUrl}
+              target='_blank'
+              rel='noreferrer'
+            >
+              Заполнить бриф
+            </a>
           </div>
         </StickyBox>
-        <div className={s.service__right}>
-          <div className={s.service__cards}>
-            {cards.slice(0, 6).map((card, idx) => (
-              <ServiceCard
-                position={setPosition(idx + 1, showPer)}
-                key={idx}
-                number={idx + 1}
-                {...card}
-              />
-            ))}
-          </div>
-          <AnimateHeight height={showPer === 6 ? 0 : 'auto'}>
-            <div className={s.service__cards}>
-              {cards.slice(6).map((card, idx) => (
-                <ServiceCard
-                  position={setPositionOther(idx + 1, lengthCutArr)}
-                  key={idx}
-                  number={idx + 1}
-                  {...card}
-                />
-              ))}
+        <div className={cn(s.service__right, 'service__cards')}>
+          <div className={s.service__right_inner}>
+            <div
+              className={s.service__hovers}
+              onMouseMove={e => width > 1023 && moveShowreelCursor(e)}
+            >
+              <div className={s.service__mouse__icon} ref={showreelCursorRef}>
+                <div className={s.service__mouse__icon_text}>
+                  <CircleIcon />
+                </div>
+                <div className={s.service__mouse__icon_play}>
+                  <CircleArrowIcon />
+                </div>
+              </div>
+              <div className={s.service__cards}>
+                {services.slice(0, 6).map((card, idx) => (
+                  <ServiceCard
+                    textUsUrl={textUsUrl}
+                    position={setPosition(idx + 1, showPer)}
+                    key={idx}
+                    number={idx + 1}
+                    {...card}
+                  />
+                ))}
+              </div>
+              <AnimateHeight height={showPer === 6 ? 0 : 'auto'}>
+                <div className={s.service__cards}>
+                  {services.slice(6).map((card, idx) => (
+                    <ServiceCard
+                      textUsUrl={textUsUrl}
+                      position={setPositionOther(idx + 1, lengthCutArr)}
+                      key={idx}
+                      number={idx + 1}
+                      {...card}
+                    />
+                  ))}
+                </div>
+              </AnimateHeight>
             </div>
-          </AnimateHeight>
-          <AnimateHeight height={showPer === cards.length ? 0 : 'auto'}>
+          </div>
+          <AnimateHeight height={showPer === services.length ? 0 : 'auto'}>
             <button
               className={s.service__more}
-              onClick={() => setShowPer(cards.length)}
+              onClick={() => setShowPer(services.length)}
             >
               <i>
                 <SpinIcon />
@@ -162,5 +153,3 @@ export const ServiceSection = () => {
     </section>
   )
 }
-
-// background: linear-gradient(180deg, #FAC7EE 0%, #FFE7FC 100%);

@@ -2,6 +2,7 @@
 
 export * from './layouts/Header/Header'
 export * from './layouts/Header/HeaderNavigation/HeaderNavigation'
+export * from './layouts/Header/HeaderNavigation/HeaderNavigationMobile'
 export * from './layouts/Footer/Footer'
 export * from './layouts/Layout'
 
@@ -24,6 +25,7 @@ export * from './sections/ServiceSection/ServiceCard/ServiceCard'
 export * from './sections/ClientSection/ClientSection'
 export * from './sections/ClientSection/ClientSectionCanvas/ClientSectionCanvas'
 export * from './sections/ClientSection/ClientSectionSlider/ClientSectionSlider'
+export * from './sections/ClientSection/ClientSectionSlider/SlideTimer'
 
 //Banner Brief Section
 export * from './sections/BannerBriefSection/BannerBriefSection'
@@ -59,3 +61,5 @@ export * from './icons/SpinIcon'
 export * from './icons/FaqIcon'
 export * from './icons/CheckIcon'
 export * from './icons/DownloadPdfIcon'
+export * from './icons/CircleIcon'
+export * from './icons/CircleArrowIcon'

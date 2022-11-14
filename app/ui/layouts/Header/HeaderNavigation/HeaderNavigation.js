@@ -1,17 +1,9 @@
 import React from 'react'
 import { Link } from 'react-scroll'
 
-import s from './HeaderNavigation.module.scss'
+import { links } from '@/data/links'
 
-const links = [
-  { id: 'about', title: 'о компании' },
-  { id: 'service', title: 'услуги', circle: true },
-  { id: 'media', title: 'сми' },
-  { id: 'reviews', title: 'отзывы' },
-  { id: 'clients', title: 'клиенты' },
-  { id: 'team', title: 'команда' },
-  { id: 'faq', title: 'faq' }
-]
+import s from './HeaderNavigation.module.scss'
 
 export const HeaderNavigation = () => {
   return (

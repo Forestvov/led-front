@@ -2,7 +2,6 @@
 @use "app/styles/use/colors";
 @use "app/styles/use/utils";
 
-
 .experience {
   background-color: colors.$colorText;
   padding: 130px 0 140px;
@@ -26,7 +25,7 @@
   }
 
   &__image {
-    @include utils.padding-hack(527px);
+    position: relative;
 
     img {
       border-radius: 20px;
@@ -47,6 +46,11 @@
 
   &__info {
     margin-top: 49px;
+
+    &.mobile {
+      display: none;
+    }
+
     &_position {
       color: #B9C2CF;
       font-weight: 600;
@@ -76,7 +80,7 @@
       position: relative;
       padding-bottom: 4px;
 
-      &::before{
+      &::before {
         position: absolute;
         content: '';
         width: 100%;
@@ -90,6 +94,193 @@
     &_link {
       @include typography.ButtonLink();
       background-color: #fff;
+    }
+  }
+
+
+  @include utils.media-max-width(1600) {
+    padding: 110px 0 120px;
+
+    &__title {
+      margin-bottom: 75px;
+    }
+
+    &__inner {
+      grid-template-columns: 400px 1fr;
+      grid-column-gap: 80px;
+    }
+
+    &__info {
+      max-width: 600px;
+
+      &_position {
+        font-size: 15px;
+      }
+
+      &_name {
+        font-size: 34px;
+        line-height: 42.5px;
+        margin-bottom: 25px;
+      }
+
+      &_description {
+        line-height: 38.4px;
+        font-size: 24px;
+        margin-bottom: 55px;
+      }
+
+      &_more {
+        font-size: 15px;
+      }
+    }
+  }
+
+  @include utils.media-max-width(1279) {
+    padding: 80px 0 90px;
+
+    &__title {
+      margin-bottom: 55px;
+      max-width: 800px;
+    }
+
+    &__inner {
+      grid-template-columns: 355px 1fr;
+      grid-column-gap: 50px;
+    }
+
+    &__info {
+      max-width: 555px;
+
+      &_position {
+        font-size: 14px;
+      }
+
+      &_name {
+        font-size: 30px;
+        line-height: 37.5px;
+        margin-bottom: 20px;
+      }
+
+      &_description {
+        line-height: 35.2px;
+        font-size: 22px;
+        margin-bottom: 50px;
+      }
+
+      &_more {
+        font-size: 14px;
+      }
+    }
+  }
+
+  @include utils.media-max-width(1023) {
+    padding: 75px 0 80px;
+
+    &__title {
+      margin-bottom: 45px;
+      max-width: 800px;
+    }
+
+    &__inner {
+      grid-template-columns: 215px 1fr;
+      grid-column-gap: 35px;
+    }
+
+    &__info {
+      margin-top: 0;
+      max-width: 458px;
+
+      &_position {
+      }
+
+      &_name {
+        font-size: 27px;
+        line-height: 33.75px;
+        margin-bottom: 18px;
+      }
+
+      &_description {
+        line-height: 28.8px;
+        font-size: 18px;
+        margin-bottom: 30px;
+      }
+
+      &_more {
+        font-size: 13px;
+      }
+    }
+  }
+
+  @include utils.media-max-width(620) {
+    padding: 60px 0;
+
+    &__title {
+      margin-bottom: 35px;
+    }
+
+    &__inner {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__image {
+      display: flex;
+      padding-top: 0;
+      height: auto;
+
+      &::before {
+        height: 142px;
+        width: 110px;
+      }
+
+      & > span {
+        margin-right: 20px !important;
+      }
+
+      img {
+        height: 142px !important;
+        width: 110px !important;
+        flex: 0 0 auto;
+      }
+    }
+
+    &__info {
+      margin-top: 0;
+      max-width: 458px;
+
+      &.mobile {
+        display: block;
+      }
+
+      .desktop {
+        display: none;
+      }
+
+      &_position {
+        font-size: 12px;
+        line-height: 16.8px;
+        max-width: 105px;
+      }
+
+      &_name {
+        font-size: 23px;
+        line-height: 28.75px;
+        margin: 0;
+        max-width: 195px;
+      }
+
+      &_description {
+        line-height: 25.6px;
+        font-size: 16px;
+        margin-bottom: 40px;
+        margin-top: 20px;
+      }
+
+      &_more {
+        display: inline-block;
+        margin-top: 9px;
+        font-size: 12px;
+      }
     }
   }
 }

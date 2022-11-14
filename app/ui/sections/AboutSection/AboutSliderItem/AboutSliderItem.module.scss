@@ -1,5 +1,5 @@
 @use "app/styles/use/colors";
-
+@use "app/styles/use/utils";
 
 .item {
   display: flex;
@@ -25,11 +25,56 @@
     font-feature-settings: 'pnum' on, 'lnum' on;
   }
 
-  &__title{
+  &__title {
     font-size: 18px;
     font-feature-settings: 'pnum' on, 'lnum' on;
     margin-top: 48px;
     margin-left: 10px;
     display: block;
+  }
+
+  @include utils.media-max-width(1600) {
+    &__title {
+      font-size: 17px;
+    }
+
+    &__value {
+      font-size: 15px;
+      line-height: 15px;
+    }
+  }
+
+  @include utils.media-max-width(1279) {
+    &__number {
+      width: 42px;
+      height: 42px;
+    }
+
+    &__title {
+      font-size: 16px;
+      margin-top: 45px;
+    }
+
+    &__value {
+      font-size: 14px;
+      line-height: 14px;
+    }
+  }
+
+  @include utils.media-max-width(767) {
+    &__number {
+      width: 38px;
+      height: 38px;
+    }
+
+    &__title {
+      font-size: 15px;
+      margin-left: 2px;
+    }
+
+    &__value {
+      font-size: 12px;
+      line-height: 21px;
+    }
   }
 }

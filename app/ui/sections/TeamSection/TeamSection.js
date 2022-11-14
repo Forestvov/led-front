@@ -4,19 +4,24 @@ import React from 'react'
 
 import s from './TeamSection.module.scss'
 
-export const TeamSection = () => {
+export const TeamSection = props => {
+  const { title, image, workTogetherUrl } = props
+
   return (
     <section id='team' className={s.team}>
-      <img className={s.team__bg} src='/moc/team/team_bg.jpg' alt='' />
+      <img src={image} alt='поработаем вместе?' />
       <div className={cn('container', s.team__body)}>
-        <h2 className={s.team__title}>
-          Молодая и амбициозная команда специалистов поможет добиться успеха
-        </h2>
+        <h2 className={s.team__title}>{title}</h2>
         <div className={s.team__action}>
           <div className={s.team__action_circle}>
             <Image src='/icons/team__emoji.png' width={90} height={90} />
           </div>
-          <a className={s.team__action_link} href=''>
+          <a
+            className={s.team__action_link}
+            href={workTogetherUrl}
+            target='_blank'
+            rel='noreferrer'
+          >
             <span />
             <span />
           </a>

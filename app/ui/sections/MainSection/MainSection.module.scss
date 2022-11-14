@@ -1,8 +1,10 @@
 @use "app/styles/use/utils";
 @use "app/styles/use/typography";
+@use "app/styles/use/colors";
 
 .main {
   height: 100vh;
+  min-height: 750px;
   background-color: #000;
   display: flex;
   align-items: center;
@@ -45,6 +47,7 @@
     display: flex;
     align-items: center;
     background: rgba(255, 255, 255, 0.9);
+    color: colors.$colorText;
     border-radius: 35px;
     padding-left: 15px;
     font-weight: 600;
@@ -65,6 +68,7 @@
   }
 
   @include utils.media-max-width(1600) {
+    min-height: 680px;
 
     &__title {
       margin-bottom: 52px;
@@ -74,6 +78,36 @@
       font-size: 16px;
       height: 65px;
       width: 223px;
+    }
+  }
+
+  @include utils.media-max-width(1279) {
+    &__title {
+      margin-bottom: 45px;
+    }
+
+    &__brif {
+      font-size: 15px;
+      height: 60px;
+    }
+  }
+
+  @include utils.media-max-width(1023) {
+    &__title{
+      margin-bottom: 40px;
+    }
+
+    &__brif {
+      width: 211px;
+      height: 56px;
+    }
+  }
+
+  @include utils.media-max-width(767) {
+    &__brif {
+      padding-left: 8px;
+      width: 200px;
+      height: 52px;
     }
   }
 }

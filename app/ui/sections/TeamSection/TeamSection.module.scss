@@ -62,4 +62,153 @@
       top: 0;
     }
   }
+
+  @include utils.media-max-width(1600) {
+    padding-top: 829px;
+
+    &__title {
+      bottom: 75px;
+    }
+
+    &__action {
+      top: 70px;
+      width: 332px;
+      height: 112px;
+
+      &_link {
+        left: 48px;
+      }
+
+      &_circle,
+      &_link {
+        margin-top: 33px;
+        width: 80px;
+        height: 80px;
+      }
+
+      &_icon img {
+        width: 180px;
+        height: auto;
+      }
+    }
+  }
+
+  @include utils.media-max-width(1279) {
+    padding-top: 702px;
+
+    &__action {
+      top: 40px;
+      width: 298px;
+      height: 103px;
+
+      &_link {
+        span:first-child {
+          width: 21px;
+          height: 2.5px;
+        }
+
+        span:last-child {
+          height: 21px;
+          width: 2.5px;
+        }
+      }
+
+      &_circle,
+      &_link {
+        margin-top: 33px;
+        width: 70px;
+        height: 70px;
+      }
+
+      &_icon img {
+        width: 166px;
+        height: auto;
+      }
+    }
+
+    &__title {
+      bottom: 60px;
+    }
+  }
+
+  @include utils.media-max-width(1023) {
+    padding-top: 576px;
+
+    &__action {
+      top: 30px;
+      width: 252px;
+      height: 85px;
+
+      &_link {
+        span:first-child {
+          width: 18px;
+          height: 2.35px;
+        }
+
+        span:last-child {
+          height: 18px;
+          width: 2.35px;
+        }
+      }
+
+      &_circle,
+      &_link {
+        margin-top: 25px;
+        width: 60px;
+        height: 60px;
+      }
+
+      &_icon img {
+        width: 137px;
+        height: auto;
+      }
+    }
+
+    &__title {
+      left: 30px;
+      bottom: 55px;
+    }
+  }
+
+  @include utils.media-max-width(767) {
+    padding-top: 344px;
+
+    &__action {
+      top: 15px;
+      width: 220px;
+      height: 75px;
+
+      &_link {
+        left: 37px;
+
+        span:first-child {
+          width: 14px;
+          height: 1.83px;
+        }
+
+        span:last-child {
+          height: 14px;
+          width: 1.83px;
+        }
+      }
+
+      &_circle,
+      &_link {
+        margin-top: 22px;
+        width: 50px;
+        height: 50px;
+      }
+
+      &_icon img {
+        width: 122px;
+        height: auto;
+      }
+    }
+
+    &__title {
+      left: 15px;
+      right: 15px;
+      bottom: 10px;
+    }
+  }
 }

@@ -52,6 +52,12 @@
     font-size: 15px;
   }
 
+  &__mobile {
+    display: none;
+    border-top: 1px solid rgba(241, 241, 241, 0.1);
+    margin-top: 28px;
+  }
+
   @include utils.media-max-width(1600) {
     padding-bottom: 27px;
     padding-top: 30px;
@@ -69,8 +75,49 @@
   }
 
   @include utils.media-max-width(1279) {
+    padding-bottom: 0;
+    border-bottom: 0;
+    overflow: hidden;
+
     &__navigation {
       display: none;
+    }
+
+    &__logo {
+      &_text {
+        font-size: 13px;
+        line-height: 20px;
+        margin-left: 17px;
+      }
+    }
+
+    &__mobile {
+      display: block;
+    }
+  }
+
+  @include utils.media-max-width(767) {
+    padding-top: 24px;
+    &__logo {
+      svg {
+        width: 56px;
+      }
+
+      &_text {
+        font-size: 12px;
+        line-height: 16px;
+        margin-left: 15px;
+      }
+    }
+
+    &__project {
+      margin-left: 0;
+      font-size: 13px;
+      width: 140px;
+    }
+
+    &__mobile {
+      margin-top: 22px;
     }
   }
 }

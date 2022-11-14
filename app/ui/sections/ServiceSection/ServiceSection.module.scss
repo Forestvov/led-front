@@ -2,8 +2,43 @@
 @use "app/styles/use/colors";
 @use "app/styles/use/utils";
 
+
 .service {
   padding: 160px 0;
+  position: relative;
+  background-color: #fff;
+
+  &__mouse__icon {
+    pointer-events: none;
+    width: 135px;
+    opacity: 0;
+    mix-blend-mode: difference;
+    filter: invert(1);
+    transition: opacity 0.5s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99;
+
+    svg {
+      width: 100%;
+    }
+
+    &_text {
+      transition: all 0.5s ease-in-out;
+
+      svg {
+        animation: rotate 10s infinite linear;
+        width: 135px;
+      }
+    }
+
+    &_play {
+      position: absolute;
+      @include utils.absoluteXY();
+    }
+  }
+
   &__container {
     display: flex;
     align-items: flex-start;
@@ -36,6 +71,17 @@
     max-width: 826px;
   }
 
+  &__hovers {
+    position: relative;
+    cursor: none;
+
+    &:hover {
+      .service__mouse__icon {
+        opacity: 1;
+      }
+    }
+  }
+
   &__cards {
     display: flex;
     flex-wrap: wrap;
@@ -51,12 +97,161 @@
     font-weight: 600;
     font-size: 17px;
     margin: 60px auto 0;
+    color: colors.$colorText;
+
     i {
       margin-right: 8px;
     }
 
     &:hover i svg {
       animation: move 1.5s infinite linear;
+    }
+  }
+
+  @include utils.media-max-width(1600) {
+    padding: 110px 0;
+
+    &__left {
+      max-width: 420px;
+    }
+
+    &__title {
+      margin-bottom: 21px;
+    }
+
+    &__text {
+      font-size: 17px;
+      line-height: 30.6px;
+      margin-bottom: 41px;
+    }
+
+    &__right {
+      max-width: 680px;
+    }
+
+    &__more {
+      width: 254px;
+      margin: 50px auto 0;
+      font-size: 16px;
+      line-height: 65px;
+      height: 65px;
+    }
+  }
+
+  @include utils.media-max-width(1279) {
+    padding: 90px 0;
+
+    &__sticky {
+      position: static !important;
+    }
+
+    &__container {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    &__left {
+      max-width: 800px;
+      margin-top: 0;
+      margin-bottom: 60px;
+    }
+
+    &__text {
+      font-size: 16px;
+      line-height: 28.8px;
+      margin-bottom: 36px;
+    }
+
+    &__right {
+      max-width: 100%;
+    }
+
+    &__more {
+      width: 239px;
+      font-size: 15px;
+      line-height: 60px;
+      height: 60px;
+
+      svg {
+        margin-top: 23px;
+      }
+    }
+  }
+
+  @include utils.media-max-width(1023) {
+    padding: 75px 0;
+
+    &__mouse__icon {
+      display: none;
+      opacity: 0;
+    }
+
+    &__left {
+      max-width: 635px;
+      margin-bottom: 57px;
+    }
+
+    &__text {
+      margin-bottom: 28px;
+    }
+
+    &__right {
+      max-width: 100%;
+      width: 100%;
+      cursor: auto;
+    }
+
+    &__hovers {
+      cursor: auto;
+    }
+
+    &__more {
+      line-height: 56px;
+      height: 56px;
+      margin-top: 45px;
+
+      svg {
+        margin-top: 23px;
+      }
+    }
+  }
+
+  @include utils.media-max-width(767) {
+    padding: 60px 0;
+
+    &__left {
+      margin-bottom: 46px;
+    }
+
+    &__right {
+      &_inner {
+        border-radius: 0 0 25px 25px;
+        overflow: hidden;
+      }
+    }
+
+    &__cards {
+      flex-direction: column;
+    }
+
+    &__title {
+      margin-bottom: 14px;
+    }
+
+    &__text {
+      font-size: 15px;
+      line-height: 27px;
+      margin-bottom: 23px;
+    }
+
+    &__more {
+      line-height: 52px;
+      height: 52px;
+      margin-top: 35px;
+
+      svg {
+        margin-top: 19px;
+      }
     }
   }
 }
@@ -68,6 +263,12 @@
   50% {
     transform: rotate(180deg);
   }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate {
   100% {
     transform: rotate(360deg);
   }

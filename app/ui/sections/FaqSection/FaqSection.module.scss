@@ -1,6 +1,6 @@
 @use "app/styles/use/typography";
 @use "app/styles/use/colors";
-
+@use 'app/styles/use/utils';
 
 .faq {
   margin-top: 135px;
@@ -24,7 +24,7 @@
     color: colors.$colorText;
     margin-bottom: 50px;
 
-    svg {
+    i {
       vertical-align: middle;
     }
   }
@@ -36,5 +36,144 @@
   &__right {
     width: 665px;
     margin-top: 25px;
+  }
+
+  @include utils.media-max-width(1600) {
+    margin-top: 110px;
+
+    &__body {
+      margin: 0;
+      padding: 75px 60px 95px 60px;
+    }
+
+    &__left {
+      width: 280px;
+    }
+
+    &__title {
+      font-size: 46px;
+      line-height: 55.2px;
+      margin-bottom: 45px;
+
+      i {
+        &:first-child svg {
+          width: 45px;
+          height: 45px;
+        }
+
+        &:last-child svg {
+          width: 39px;
+          height: 39px;
+        }
+      }
+    }
+
+    &__right {
+      width: 620px;
+      margin-top: 18px;
+    }
+  }
+
+  @include utils.media-max-width(1279) {
+    margin-top: 90px;
+
+    &__body {
+      padding: 65px 50px 80px;
+    }
+
+    &__left {
+      width: 277px;
+    }
+
+    &__title {
+      font-size: 38px;
+      line-height: 45.6px;
+      margin-bottom: 40px;
+
+      i {
+        &:first-child svg {
+          width: 40px;
+          height: 40px;
+        }
+
+        &:last-child svg {
+          width: 30px;
+          height: 30px;
+        }
+      }
+    }
+
+    &__right {
+      width: 505px;
+    }
+  }
+
+  @include utils.media-max-width(1023) {
+    margin-top: 75px;
+
+    &__body {
+      padding: 55px 40px 65px;
+      flex-direction: column;
+    }
+
+    &__left {
+      width: 100%;
+    }
+
+    &__title {
+      font-size: 32px;
+      line-height: 38.4px;
+      margin-bottom: 30px;
+      position: relative;
+
+      i {
+        position: relative;
+        &:first-child svg {
+          width: 30px;
+          height: 30px;
+          position: absolute;
+          left: -24px;
+          top: -8px;
+        }
+
+        &:last-child svg {
+          width: 28px;
+          height: 28px;
+        }
+      }
+    }
+
+    &__right {
+      width: 100%;
+      margin-top: 45px;
+    }
+  }
+
+  @include utils.media-max-width(767) {
+    margin-top: 60px;
+
+    &__body {
+      padding: 35px 20px 40px;
+    }
+
+    &__title {
+      font-size: 25px;
+      line-height: 30px;
+      margin-bottom: 25px;
+
+      svg:first-child {
+        width: 33px;
+        height: 33px;
+      }
+
+      svg:last-child {
+        width: 25.5px;
+        height: 25.5px;
+      }
+    }
+
+    &__right {
+      margin-top: 35px;
+    }
   }
 }

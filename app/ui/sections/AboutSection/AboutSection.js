@@ -24,36 +24,65 @@ const paramsSlider = {
   },
   spaceBetween: 110,
   slidesPerView: 'auto',
+  allowTouchMove: false,
   speed: 5000,
-  grabCursor: false
+  grabCursor: false,
+  breakpoints: {
+    1600: {
+      spaceBetween: 110
+    },
+    1280: {
+      spaceBetween: 100
+    },
+    1024: {
+      spaceBetween: 90
+    },
+    768: {
+      spaceBetween: 70
+    },
+    320: {
+      spaceBetween: 55
+    }
+  }
 }
 
-export const AboutSection = () => {
+export const AboutSection = props => {
+  const { topBlock, branches, bottomBlock, discussProjectUrl } = props
+
   return (
     <section id='about' className={s.about}>
       <div className={cn('container', s.about__container)}>
-        <h2 className={s.about__title}>
-          Профессиональная экспертиза и высокие стандарты работы с компаниями из
-          разных отраслей
-        </h2>
+        <h2
+          className={s.about__title}
+          dangerouslySetInnerHTML={{ __html: topBlock.title }}
+        />
 
         <Swiper className={s.about__slider} {...paramsSlider}>
-          {slides.map((slide, idx) => (
-            <SwiperSlide key={slide.id} className={s.about__slide}>
-              <AboutSliderItem number={idx + 1} title={slide.title} />
+          {branches.map((branch, idx) => (
+            <SwiperSlide key={idx} className={s.about__slide}>
+              <AboutSliderItem number={idx + 1} title={branch.name} />
             </SwiperSlide>
           ))}
         </Swiper>
 
         <div className={s.about__description}>
-          <h3 className={s.about__description_title}>Что такое LED PR</h3>
+          <h3
+            className={s.about__description_title}
+            dangerouslySetInnerHTML={{ __html: bottomBlock.title }}
+          />
           <div className={s.about__description_content}>
-            <p className={s.about__description_text}>
-              Мы помогаем бизнесу рассказать о себе на страницах федеральных и
-              отраслевых СМИ, в залах крупнейших конференций, в теле и
-              радио-эфирах.
-            </p>
-            <a className={s.about__description_project}>Обсудить проект</a>
+            <div
+              className={s.about__description_text}
+              dangerouslySetInnerHTML={{ __html: bottomBlock.description }}
+            />
+            <a
+              className={s.about__description_project}
+              href={discussProjectUrl}
+              target='_blank'
+              rel='noreferrer'
+            >
+              Обсудить проект
+            </a>
           </div>
         </div>
       </div>

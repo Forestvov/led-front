@@ -3,9 +3,6 @@
 
 
 .article {
-  margin-left: 20px;
-  margin-bottom: 20px;
-  flex-basis: calc(25% - 20px);
   border: 1px solid #E8E8E8;
   padding: 46px 42px 52px 40px;
   display: flex;
@@ -30,5 +27,61 @@
     color: #B8B8B8;
     font-size: 14px;
     font-weight: 400;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+  }
+
+  @include utils.media-max-width(1600) {
+    padding: 30px 20px 40px 20px;
+    height: 330px;
+
+    &__title {
+      font-size: 20px;
+      line-height: 28px;
+    }
+
+    &__portal {
+      font-size: 20px;
+      line-height: 28px;
+      margin-bottom: 2px;
+    }
+
+    &__date {
+      font-size: 13px;
+    }
+  }
+
+  @include utils.media-max-width(1279) {
+    &__title {
+      font-size: 19px;
+      line-height: 26.6px;
+    }
+
+    &__portal {
+      font-size: 19px;
+      line-height: 26.6px;
+    }
+
+    &__date {
+      font-size: 13px;
+    }
+  }
+
+  @include utils.media-max-width(767) {
+    padding: 30px 20px;
+    height: 266px;
+
+    &__title {
+      font-size: 16px;
+      line-height: 22.4px;
+    }
+
+    &__portal {
+      font-size: 16px;
+      line-height: 22.4px;
+    }
+
+    &__date {
+      font-size: 12px;
+    }
   }
 }

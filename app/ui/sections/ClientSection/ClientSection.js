@@ -5,7 +5,7 @@ import { ClientSectionCanvas, ClientSectionSlider } from '@/ui/index'
 
 import s from './ClientSection.module.scss'
 
-export const ClientSection = () => {
+export const ClientSection = ({ clients, reviews }) => {
   return (
     <section className={s.clients}>
       <div className={s.clients__inner}>
@@ -27,47 +27,22 @@ export const ClientSection = () => {
               О наших клиентах пишут самые известные федеральные СМИ
             </h2>
             <div className={s.clients__items}>
-              <div className={s.clients__icon}>
-                <img src='/moc/clients/forbes.svg' alt='' />
-              </div>
-              <div className={s.clients__icon}>
-                <img src='/moc/clients/коммерсант.svg' alt='' />
-              </div>
-              <div className={s.clients__icon}>
-                <img src='/moc/clients/rbk.svg' alt='' />
-              </div>
-              <div className={s.clients__icon}>
-                <img src='/moc/clients/inc.svg' alt='' />
-              </div>
-              <div className={s.clients__icon}>
-                <img src='/moc/clients/habr.svg' alt='' />
-              </div>
-              <div className={s.clients__icon}>
-                <img src='/moc/clients/canews.svg' alt='' />
-              </div>
-              <div className={s.clients__icon}>
-                <img src='/moc/clients/rusbase.svg' alt='' />
-              </div>
-              <div className={s.clients__icon}>
-                <img src='/moc/clients/secret.svg' alt='' />
-              </div>
-              <div className={s.clients__icon}>
-                <img src='/moc/clients/vogue.svg' alt='' />
-              </div>
-              <div className={s.clients__icon}>
-                <img src='/moc/clients/vedomost.svg' alt='' />
-              </div>
-              <div className={s.clients__icon}>
-                <img src='/moc/clients/vc.svg' alt='' />
-              </div>
-              <div className={s.clients__icon}>
-                <img src='/moc/clients/rgru.svg' alt='' />
-              </div>
+              {clients.map((client, idx) => (
+                <a
+                  key={idx}
+                  href={client.link}
+                  target='_blank'
+                  className={s.clients__icon}
+                  rel='noreferrer'
+                >
+                  <img src={client.image} alt={client.name} />
+                </a>
+              ))}
             </div>
           </div>
         </div>
       </div>
-      <ClientSectionSlider />
+      {reviews.length > 0 ? <ClientSectionSlider slides={reviews} /> : null}
     </section>
   )
 }

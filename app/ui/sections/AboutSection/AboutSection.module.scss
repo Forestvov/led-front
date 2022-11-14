@@ -1,5 +1,6 @@
 @use "app/styles/use/typography";
 @use "app/styles/use/colors";
+@use "app/styles/use/utils";
 
 .about {
   padding-top: 131px;
@@ -70,9 +71,146 @@
     height: 100%;
     left: 0;
     top: 0;
-    background: radial-gradient(120.56% 120.56% at 59.32% 114.32%, rgba(243, 233, 234, 0.4) 0%, rgba(251, 230, 232, 0.4) 16.15%, rgba(251, 227, 248, 0.4) 31.25%, rgba(236, 238, 253, 0.4) 47.92%, rgba(243, 248, 252, 0.4) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */
-  ;
+    background: radial-gradient(120.56% 120.56% at 59.32% 114.32%, rgba(243, 233, 234, 0.4) 0%, rgba(251, 230, 232, 0.4) 16.15%, rgba(251, 227, 248, 0.4) 31.25%, rgba(236, 238, 253, 0.4) 47.92%, rgba(243, 248, 252, 0.4) 100%);
     transform: matrix(-1, 0, 0, 1, 0, 0);
     z-index: 0;
+  }
+
+  @include utils.media-max-width(1600) {
+    padding-top: 100px;
+    padding-bottom: 110px;
+
+    &__container {
+      padding-left: 0;
+    }
+
+    &__title {
+      margin-bottom: 80px;
+    }
+
+    &__description {
+      margin-top: 83px;
+      padding-top: 73px;
+      margin-left: 0;
+      grid-template-columns: 300px 1fr;
+      grid-column-gap: 180px;
+
+      &_title {
+        font-size: 34px;
+      }
+
+      &_content {
+        margin-top: -2px;
+      }
+
+      &_text {
+        font-size: 22px;
+        line-height: 35.2px;
+      }
+
+      &_project {
+        margin-top: 48px;
+      }
+    }
+  }
+
+  @include utils.media-max-width(1279) {
+    padding-top: 81px;
+    padding-bottom: 90px;
+
+    &__title {
+      margin-bottom: 75px;
+    }
+
+    &__description {
+      margin-top: 80px;
+      padding-top: 70px;
+      grid-template-columns: 270px 1fr;
+      grid-column-gap: 135px;
+
+      &_title {
+        font-size: 30px;
+        line-height: 32px;
+      }
+
+      &_content {
+        margin-top: -4px;
+      }
+
+      &_text {
+        font-size: 20px;
+        line-height: 32px;
+      }
+
+      &_project {
+        margin-top: 38px;
+      }
+    }
+  }
+
+  @include utils.media-max-width(1023) {
+    padding-top: 70px;
+    padding-bottom: 75px;
+
+    &__title {
+      margin-bottom: 67px;
+      margin-left: 0;
+    }
+
+    &__description {
+      margin-top: 68px;
+      padding-top: 62px;
+      grid-template-columns: 1fr;
+
+      &_title {
+        font-size: 27px;
+      }
+
+      &_content {
+        margin-top: 20px;
+      }
+
+      &_project {
+        margin-top: 36px;
+      }
+    }
+  }
+
+  @include utils.media-max-width(767) {
+    padding-top: 53px;
+    padding-bottom: 60px;
+
+    &__container {
+      padding-left: 15px;
+    }
+
+    &__title {
+      margin-bottom: 55px;
+      line-height: 36.4px;
+    }
+
+    &__description {
+      margin-top: 48px;
+      padding-top: 47px;
+      grid-template-columns: 1fr;
+
+      &_title {
+        font-size: 23px;
+        line-height: 28.75px;
+      }
+
+      &_content {
+        margin-top: 12px;
+      }
+
+      &_text {
+        font-size: 18px;
+        line-height: 28.8px;
+      }
+
+      &_project {
+        margin-top: 29px;
+      }
+    }
   }
 }

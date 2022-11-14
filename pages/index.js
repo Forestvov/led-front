@@ -1,23 +1,16 @@
 import React from 'react'
 
-import { Layout, MainSection } from '@/ui/index'
+import { Home } from '@/pages/Home'
 
-const Home = () => {
-  return (
-    <Layout>
-      <MainSection />
-      {/*<AboutSection />*/}
-      {/*<ServiceSection />*/}
-      {/*<ClientSection />*/}
-      {/*<BannerBriefSection />*/}
-      {/*<ClientListSection />*/}
-      {/*<ExperienceSection />*/}
-      {/*<TeamSection />*/}
-      {/*<MediaSection />*/}
-      {/*<FaqSection />*/}
-      {/*<SliderLoopBriefSection />*/}
-    </Layout>
-  )
+export async function getServerSideProps() {
+  const res = await fetch(process.env.NEXT_PUBLIC_API + '/main')
+  const data = await res.json()
+
+  return { props: { data } }
 }
 
-export default Home
+const HomePage = ({ data }) => {
+  return <Home {...data} />
+}
+
+export default HomePage

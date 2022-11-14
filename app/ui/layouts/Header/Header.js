@@ -1,11 +1,11 @@
 import cn from 'classnames'
 import React from 'react'
 
-import { HeaderNavigation, LogoIcon } from '@/ui/index'
+import { HeaderNavigation, HeaderNavigationMobile, LogoIcon } from '@/ui/index'
 
 import s from './Header.module.scss'
 
-export const Header = () => {
+export const Header = ({ discussProjectUrl }) => {
   return (
     <header className={s.header}>
       <div className={cn(s.header__container, 'container')}>
@@ -18,7 +18,17 @@ export const Header = () => {
         <div className={s.header__navigation}>
           <HeaderNavigation />
         </div>
-        <a className={s.header__project}>обсудить проект</a>
+        <a
+          href={discussProjectUrl}
+          target='_blank'
+          rel='noreferrer'
+          className={s.header__project}
+        >
+          обсудить проект
+        </a>
+      </div>
+      <div className={cn(s.header__mobile)}>
+        <HeaderNavigationMobile />
       </div>
     </header>
   )

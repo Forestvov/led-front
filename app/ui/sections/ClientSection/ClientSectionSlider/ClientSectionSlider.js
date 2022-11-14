@@ -1,246 +1,373 @@
 import cn from 'classnames'
+import Image from 'next/image'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
+
+import { SlideTimer } from '@/ui/index'
 
 import s from './ClientSectionSlider.module.scss'
 
-const slides = [
-  {
-    img: '/moc/icon_company/mts.svg',
-    text: '«Хотелось бы отметить глубокую аналитическую работу, которая проводится перед выполнением каждой задачи. Это позволяет оптимизировать рабочий процесс и добиться высокого качества готового продукта. Рекомендуем PR-агентство LED как надежного партнера в разработке веб‑сайтов и сложных сервисных систем».\n',
-    avatar: '/moc/author.jpg',
-    name: 'Максим Десятых 1',
-    position: 'Старший специалист по digital-ветринам',
-    company: 'МТС'
-  },
-  {
-    img: '/moc/icon_company/dhr.svg',
-    text: '«Хотелось бы отметить глубокую аналитическую работу, которая проводится перед выполнением каждой задачи. Это позволяет оптимизировать рабочий процесс и добиться высокого качества готового продукта. Рекомендуем PR-агентство LED как надежного партнера в разработке веб‑сайтов и сложных сервисных систем».\n',
-    avatar: '/moc/author.jpg',
-    name: 'Максим Десятых 2',
-    position: 'Старший специалист по digital-ветринам',
-    company: 'МТС'
-  },
-  {
-    img: '/moc/icon_company/crock.svg',
-    text: '«Хотелось бы отметить глубокую аналитическую работу, которая проводится перед выполнением каждой задачи. Это позволяет оптимизировать рабочий процесс и добиться высокого качества готового продукта. Рекомендуем PR-агентство LED как надежного партнера в разработке веб‑сайтов и сложных сервисных систем».\n',
-    avatar: '/moc/author.jpg',
-    name: 'Максим Десятых 3',
-    position: 'Старший специалист по digital-ветринам',
-    company: 'МТС'
-  },
-  {
-    img: '/moc/icon_company/rgru.svg',
-    text: '«Хотелось бы отметить глубокую аналитическую работу, которая проводится перед выполнением каждой задачи. Это позволяет оптимизировать рабочий процесс и добиться высокого качества готового продукта. Рекомендуем PR-агентство LED как надежного партнера в разработке веб‑сайтов и сложных сервисных систем».\n',
-    avatar: '/moc/author.jpg',
-    name: 'Максим Десятых 1',
-    position: 'Старший специалист по digital-ветринам',
-    company: 'МТС'
-  },
-  {
-    img: '/moc/icon_company/inc.svg',
-    text: '«Хотелось бы отметить глубокую аналитическую работу, которая проводится перед выполнением каждой задачи. Это позволяет оптимизировать рабочий процесс и добиться высокого качества готового продукта. Рекомендуем PR-агентство LED как надежного партнера в разработке веб‑сайтов и сложных сервисных систем».\n',
-    avatar: '/moc/author.jpg',
-    name: 'Максим Десятых 2',
-    position: 'Старший специалист по digital-ветринам',
-    company: 'МТС'
-  },
-  {
-    img: '/moc/icon_company/habr.svg',
-    text: '«Хотелось бы отметить глубокую аналитическую работу, которая проводится перед выполнением каждой задачи. Это позволяет оптимизировать рабочий процесс и добиться высокого качества готового продукта. Рекомендуем PR-агентство LED как надежного партнера в разработке веб‑сайтов и сложных сервисных систем».\n',
-    avatar: '/moc/author.jpg',
-    name: 'Максим Десятых 3',
-    position: 'Старший специалист по digital-ветринам',
-    company: 'МТС'
-  }
-]
-
-export const ClientSectionSlider = () => {
+export const ClientSectionSlider = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0)
-  const ref = useRef()
 
-  const [nodeSlides, setNodeSlides] = useState([])
+  const [beingTouched, setBeingTouched] = useState(false)
+  const [timeOfLastDragEvent, setTimeOfLastDragEvent] = useState(0)
+  const [sliderPosition, setSliderPosition] = useState(0)
+  const [originalOffset, setOriginalOffset] = useState(0)
+  const [touchStartX, setTouchStartX] = useState(0)
+  const [velocity, setVelocity] = useState(0)
+  const [prevTouchX, setPrevTouchX] = useState(0)
+  const [intervalId, setIntervalId] = useState(null)
 
-  useEffect(() => {
-    const slides = document.querySelectorAll('.clients-slide')
-    setNodeSlides(slides)
+  const sliderWrapper = useRef()
 
-    if (slides.length > 0) {
-      slides[0].classList.add('clients-slide-active')
+  const setIndex = useCallback(currentIdx => {
+    const slidesNode = sliderWrapper.current.children
+
+    for (
+      let slides = slidesNode, n = 0, r = currentIdx;
+      r < slides.length;
+      r++
+    ) {
+      slidesNode[r].style.setProperty(
+        'z-index',
+        ''.concat(slidesNode.length - n)
+      ),
+        (n += 1)
     }
 
-    if (slides.length > 1) {
-      slides[1].classList.add('clients-slide-next')
+    if (0 !== currentIdx) {
+      for (
+        let idx = slidesNode.length - currentIdx, i = 0;
+        i < currentIdx;
+        i++
+      ) {
+        slidesNode[i].style.setProperty(
+          'z-index',
+          ''.concat(slidesNode.length - idx - i)
+        )
+      }
     }
   }, [])
 
   useEffect(() => {
-    if (nodeSlides.length > 0) {
-      setTimeout(() => {
-        for (
-          let slides = nodeSlides, n = 0, r = currentIndex;
-          r < slides.length;
-          r++
-        ) {
-          nodeSlides[r].style.setProperty(
-            'z-index',
-            ''.concat(nodeSlides.length - n)
-          ),
-            (n += 1)
-        }
+    const slides = document.querySelectorAll('.clients-slide')
 
-        if (0 !== currentIndex) {
-          for (
-            let idx = nodeSlides.length - currentIndex, i = 0;
-            i < currentIndex;
-            i++
-          ) {
-            nodeSlides[i].style.setProperty(
-              'z-index',
-              ''.concat(nodeSlides.length - idx - i)
-            )
-          }
-        }
+    if (slides.length > 0) {
+      slides[0].classList.add('clients-slide-active')
+    }
+    if (slides.length > 1) {
+      slides[1].classList.add('clients-slide-next')
+    }
+
+    setIndex(currentIndex)
+  }, [])
+
+  const onClickSlide = (e, idx) => {
+    let sliderItems = sliderWrapper.current.children
+
+    let prevIdx = sliderItems[idx - 1] ? idx - 1 : sliderItems.length - 1
+    let nextIdx = sliderItems[idx + 1] ? idx + 1 : 0
+
+    onHoverTransition(e, idx, 'remove')
+
+    if (e.target.classList.contains('clients-slide-next')) {
+      setTimeout(() => {
+        sliderItems[prevIdx].classList.add('clients-slide-swipe')
+        sliderItems[idx].classList.add('clients-slide-active')
+      }, 10)
+
+      setTimeout(() => {
+        setIndex(idx)
+
+        sliderItems[nextIdx].classList.add('clients-slide-next')
+        sliderItems[idx].classList.add('clients-slide-active')
+
+        sliderItems[prevIdx].classList.remove('clients-slide-active')
+        sliderItems[prevIdx].classList.remove('clients-slide-swipe')
+        sliderItems[idx].classList.remove('clients-slide-next')
+      }, 500)
+    } else {
+      setTimeout(() => {
+        sliderItems[currentIndex].classList.add('clients-slide-swipe')
+        sliderItems[prevIdx].classList.add('clients-slide-swipe')
+      }, 10)
+
+      setTimeout(() => {
+        setIndex(idx)
+
+        sliderItems[idx].classList.add('clients-slide-active')
+        sliderItems[nextIdx].classList.add('clients-slide-next')
+
+        sliderItems[currentIndex].classList.remove('clients-slide-swipe')
+        sliderItems[prevIdx].classList.remove('clients-slide-swipe')
+        sliderItems[currentIndex].classList.remove('clients-slide-active')
+        sliderItems[prevIdx].classList.remove('clients-slide-swipe')
+        sliderItems[prevIdx].classList.remove('clients-slide-next')
+        sliderItems[idx].classList.remove('clients-slide-next')
       }, 500)
     }
-  }, [nodeSlides, currentIndex])
 
-  const onClickSlide = useCallback(
-    (e, nextIdx) => {
-      let parentItems = e.target.parentNode.children
-      setCurrentIndex(nextIdx)
-
-      if (parentItems[currentIndex]) {
-        parentItems[currentIndex].classList.remove('clients-slide-enter')
-      } else {
-        parentItems[0].classList.remove('clients-slide-enter')
-      }
-
-      if (e.target.classList.contains('clients-slide-next')) {
-        setTimeout(() => {
-          parentItems[currentIndex].classList.add('clients-slide-swipe')
-          parentItems[nextIdx].classList.add('clients-slide-active')
-        }, 10)
-
-        setTimeout(() => {
-          parentItems[currentIndex].classList.remove('clients-slide-swipe')
-          parentItems[currentIndex].classList.remove('clients-slide-active')
-
-          parentItems[nextIdx].classList.remove('clients-slide-next')
-
-          if (parentItems.length > nextIdx + 1) {
-            parentItems[nextIdx + 1].classList.add('clients-slide-next')
-          } else {
-            parentItems[0].classList.add('clients-slide-next')
-          }
-        }, 500)
-      } else {
-        setTimeout(() => {
-          parentItems[currentIndex].classList.add('clients-slide-swipe')
-
-          if (nextIdx - 1 < 0) {
-            parentItems[parentItems.length - 1].classList.add(
-              'clients-slide-swipe'
-            )
-          } else {
-            parentItems[nextIdx - 1].classList.add('clients-slide-swipe')
-          }
-
-          parentItems[nextIdx].classList.add('clients-slide-active')
-        }, 10)
-
-        setTimeout(() => {
-          parentItems[currentIndex].classList.remove('clients-slide-swipe')
-          parentItems[currentIndex].classList.remove('clients-slide-active')
-
-          if (parentItems.length > currentIndex + 1) {
-            parentItems[currentIndex + 1].classList.remove(
-              'clients-slide-swipe'
-            )
-            parentItems[0].classList.remove('clients-slide-next')
-            parentItems[currentIndex + 1].classList.remove('clients-slide-next')
-          } else {
-            parentItems[0].classList.remove('clients-slide-swipe')
-            parentItems[parentItems.length - 1].classList.remove(
-              'clients-slide-next'
-            )
-          }
-
-          if (parentItems.length > nextIdx + 1) {
-            parentItems[nextIdx + 1].classList.add('clients-slide-next')
-          } else {
-            parentItems[0].classList.add('clients-slide-next')
-          }
-        }, 500)
-      }
-    },
-    [currentIndex]
-  )
-
-  const dragSlide = e => {
-    e.preventDefault()
-    console.log(e)
+    setCurrentIndex(idx)
   }
 
-  const onHoverTransition = (e, type) => {
+  const onNextSlideAuto = idx => {
+    let sliderItems = sliderWrapper.current.children
+
+    let nextIdx = sliderItems[idx + 1] ? idx + 1 : 0
+
+    let nextNextIdx = sliderItems[currentIndex + 2]
+      ? idx + 2
+      : idx === 2
+      ? 1
+      : 0
+
+    setTimeout(() => {
+      sliderItems[currentIndex].classList.add('clients-slide-swipe')
+      sliderItems[nextIdx].classList.add('clients-slide-active')
+    }, 10)
+
+    setTimeout(() => {
+      setIndex(nextIdx)
+      setCurrentIndex(nextIdx)
+
+      sliderItems[nextNextIdx].classList.add('clients-slide-next')
+
+      sliderItems[idx].classList.remove('clients-slide-active')
+      sliderItems[idx].classList.remove('clients-slide-swipe')
+      sliderItems[idx].classList.remove('clients-slide-enter')
+      sliderItems[nextIdx].classList.remove('clients-slide-next')
+    }, 500)
+  }
+
+  const onHoverTransition = (e, idx, type) => {
+    let { innerWidth: windowWidth } = window
+
+    if (windowWidth <= 760) {
+      return null
+    }
+
     const currentItem = e.target
+    let sliderItems = sliderWrapper.current.children
+
+    let prevIdx = sliderItems[idx - 1] ? idx - 1 : sliderItems.length - 1
 
     if (type === 'add') {
       if (currentItem.classList.contains('clients-slide-next')) {
-        nodeSlides[currentIndex].classList.add('clients-slide-enter')
+        sliderItems[prevIdx].classList.add('clients-slide-enter')
       }
-
       if (
         !currentItem.classList.contains('clients-slide-next') &&
         !currentItem.classList.contains('clients-slide-active')
       ) {
-        nodeSlides[currentIndex].classList.add('clients-slide-enter')
-        nodeSlides[currentIndex + 1].classList.add('clients-slide-enter')
+        sliderItems[prevIdx].classList.add('clients-slide-enter')
+        sliderItems[currentIndex].classList.add('clients-slide-enter')
       }
     }
 
     if (type === 'remove') {
-      nodeSlides[currentIndex].classList.remove('clients-slide-enter')
-      nodeSlides[currentIndex + 1].classList.remove('clients-slide-enter')
+      sliderItems[prevIdx].classList.remove('clients-slide-enter')
+      sliderItems[currentIndex].classList.remove('clients-slide-enter')
     }
+  }
+
+  const animateSlidingToZero = () => {
+    let _left = sliderPosition
+    let _velocity = velocity
+    if (!beingTouched && _left < -0.01) {
+      _velocity += 10 * 0.033
+      _left += _velocity
+      if (_left < -2000) {
+        window.clearInterval(intervalId)
+      }
+      setSliderPosition(_left)
+      setVelocity(_velocity)
+    } else if (!beingTouched) {
+      _left = 0
+      _velocity = 0
+      window.clearInterval(intervalId)
+      setSliderPosition(_left)
+      setVelocity(_velocity)
+      setIntervalId(null)
+      setOriginalOffset(0)
+    }
+  }
+
+  const onHandleStart = clientX => {
+    if (intervalId !== null) {
+      window.clearInterval(intervalId)
+    }
+
+    setOriginalOffset(sliderPosition)
+    setTouchStartX(clientX)
+    setTimeOfLastDragEvent(Date.now())
+    setVelocity(0)
+    setBeingTouched(true)
+    setIntervalId(null)
+  }
+
+  const onHandleMove = clientX => {
+    if (beingTouched) {
+      const touchX = clientX
+      const currTime = Date.now()
+      const elapsed = currTime - timeOfLastDragEvent
+      const velocity = (20 * (touchX - prevTouchX)) / elapsed
+      let deltaX = touchX - touchStartX + originalOffset
+
+      if (deltaX > 0) {
+        deltaX = 0
+      }
+
+      setTimeOfLastDragEvent(currTime)
+      setSliderPosition(deltaX)
+      setVelocity(velocity)
+      setPrevTouchX(touchX)
+    }
+  }
+
+  const onHandleEnd = idx => {
+    let { innerWidth: windowWidth } = window
+    let slidePositionEnd = windowWidth <= 760 ? -60 : -400
+    if (idx === undefined) {
+      return
+    }
+    if (sliderPosition <= slidePositionEnd) {
+      let sliderItems = sliderWrapper.current.children
+
+      let nextIdx = sliderItems[idx + 1] ? idx + 1 : 0
+
+      let nextNextIdx = sliderItems[currentIndex + 2]
+        ? idx + 2
+        : idx === 2
+        ? 1
+        : 0
+
+      setTimeout(() => {
+        sliderItems[currentIndex].classList.add('clients-slide-swipe')
+        sliderItems[nextIdx].classList.add('clients-slide-active')
+      }, 10)
+
+      setTimeout(() => {
+        setIndex(nextIdx)
+        setCurrentIndex(nextIdx)
+
+        sliderItems[nextNextIdx].classList.add('clients-slide-next')
+
+        sliderItems[idx].classList.remove('clients-slide-active')
+        sliderItems[idx].classList.remove('clients-slide-swipe')
+        sliderItems[idx].classList.remove('clients-slide-enter')
+        sliderItems[nextIdx].classList.remove('clients-slide-next')
+      }, 500)
+    }
+    setSliderPosition(0)
+    setVelocity(0)
+    setTouchStartX(0)
+    setBeingTouched(false)
+    setIntervalId(animateSlidingToZero())
+  }
+
+  const onHandleTouchStart = touchStartEvent => {
+    touchStartEvent.preventDefault()
+    onHandleStart(touchStartEvent.targetTouches[0].clientX)
+  }
+
+  const onHandleTouchMove = touchMoveEvent => {
+    onHandleMove(touchMoveEvent.targetTouches[0].clientX)
+  }
+
+  const onHandleTouchEnd = idx => {
+    onHandleEnd(idx)
+  }
+
+  const onHandleMouseDown = mouseDownEvent => {
+    mouseDownEvent.preventDefault()
+    mouseDownEvent.currentTarget.classList.add('clients-slide-drag')
+    mouseDownEvent.currentTarget.classList.remove('clients-slide-enter')
+    onHandleStart(mouseDownEvent.clientX)
+  }
+
+  const onHandleMouseMove = mouseMoveEvent => {
+    onHandleMove(mouseMoveEvent.clientX)
+  }
+
+  const onHandleMouseUp = (e, idx) => {
+    e.currentTarget.classList.remove('clients-slide-drag')
+    onHandleEnd(idx)
+  }
+
+  const onHandleMouseLeave = e => {
+    onHandleMouseUp(e)
   }
 
   return (
     <div id='reviews' className={s.wrapper}>
-      <div className={s.slider} ref={ref}>
+      <div
+        className={cn(s.slider, { [s.slider__disabled]: slides.length <= 1 })}
+        ref={sliderWrapper}
+      >
         {slides.map((slide, idx) => {
           return (
             <div
+              style={{
+                transform:
+                  currentIndex === idx && beingTouched
+                    ? `translate3d(${sliderPosition}px, 0px, 0px)`
+                    : null
+              }}
+              onTouchStart={touchStartEvent =>
+                onHandleTouchStart(touchStartEvent)
+              }
+              onTouchMove={touchMoveEvent => onHandleTouchMove(touchMoveEvent)}
+              onTouchEnd={() => onHandleTouchEnd(idx)}
+              onMouseDown={mouseDownEvent => onHandleMouseDown(mouseDownEvent)}
+              onMouseMove={mouseMoveEvent => onHandleMouseMove(mouseMoveEvent)}
+              onMouseUp={e => onHandleMouseUp(e, idx)}
+              onMouseLeave={e => {
+                onHandleMouseLeave(e)
+                onHoverTransition(e, idx, 'remove')
+              }}
+              onMouseEnter={e => onHoverTransition(e, idx, 'add')}
               key={idx}
-              onDragOver={dragSlide}
-              onMouseEnter={e => onHoverTransition(e, 'add')}
-              onMouseLeave={e => onHoverTransition(e, 'remove')}
               onClick={e =>
                 currentIndex === idx ? null : onClickSlide(e, idx)
               }
               className={cn(s.slide, 'clients-slide')}
             >
-              <img
-                className={s.slide__icon}
-                src={slide.img}
-                alt={slide.company}
-              />
+              <div className={s.slide__icon}>
+                <img src={slide.logo} alt={slide.company} />
+              </div>
               <div className={cn('container', s.slide__content)}>
-                <p className={s.slide__text}>{slide.text}</p>
+                <div
+                  className={s.slide__text}
+                  dangerouslySetInnerHTML={{ __html: slide.text }}
+                />
                 <div className={s.slide__information}>
                   <div className={s.slide__author}>
                     <div className={s.slide__author_avatar}>
-                      <img src={slide.avatar} alt={slide.name} />
+                      <Image
+                        width={90}
+                        height={90}
+                        src={slide.image}
+                        alt={slide.name}
+                      />
                     </div>
                     <div className={s.slide__author_info}>
                       <div className={s.slide__author_name}>{slide.name}</div>
                       <div className={s.slide__author_position}>
-                        {slide.position}
+                        {slide.post}
                       </div>
                       <div className={s.slide__author_company}>
                         {slide.company}
                       </div>
                     </div>
                   </div>
+                  {slides.length > 1 && (
+                    <SlideTimer
+                      current={idx + 1}
+                      onChangeSlide={onNextSlideAuto}
+                      currentSlideIndex={currentIndex}
+                      total={slides.length}
+                    />
+                  )}
                 </div>
               </div>
             </div>

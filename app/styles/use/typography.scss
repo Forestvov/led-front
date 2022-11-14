@@ -7,20 +7,50 @@
   line-height: 86px;
   font-weight: 600;
   margin-left: -3px;
+  word-break: break-word;
 
-  @media only screen and (max-width: 500px) {
-    //font-size: 24px;
-    //line-height: 32.2px;
+  em {
+    white-space: nowrap;
+    font-style: normal;
+  }
+
+  sup,sub{
+    display: inline-block;
+    top: 0;
+    width: 0;
+    transform: translate(-25px, -25px);
+    position: relative;
+
+    img {
+      position: absolute;
+      bottom: 0;
+    }
   }
 
   @include utils.media-max-width(1600) {
     font-size: 58px;
     line-height: 69.6px;
+    margin-left: 0;
+
+    sup,sub{
+      transform: translate(-30px,-20px);
+      img{
+        transform: scale(.9);
+      }
+    }
   }
 
   @include utils.media-max-width(1279) {
     font-size: 48px;
     line-height: 57.6px;
+
+
+    sup,sub{
+      transform: translate(-30px,-8px);
+      img{
+        transform: scale(.85);
+      }
+    }
   }
 
   @include utils.media-max-width(1023) {
@@ -31,6 +61,14 @@
   @include utils.media-max-width(767) {
     font-size: 28px;
     line-height: 33.6px;
+
+    sup,sub{
+      transform: translate(27px,-5px);
+      img{
+        right: 0;
+        transform: scale(.6);
+      }
+    }
   }
 }
 
@@ -45,4 +83,28 @@
   font-weight: 600;
   color: colors.$colorText;
   padding: 0 38px;
+
+  @include utils.media-max-width(1600) {
+    font-size: 16px;
+    line-height: 65px;
+    height: 65px;
+    padding: 0 32px;
+  }
+
+  @include utils.media-max-width(1279) {
+    font-size: 15px;
+    height: 60px;
+    line-height: 60px;
+  }
+
+  @include utils.media-max-width(1023) {
+    height: 56px;
+    line-height: 56px;
+  }
+
+  @include utils.media-max-width(767) {
+    height: 52px;
+    line-height: 52px;
+    padding: 0 23px;
+  }
 }

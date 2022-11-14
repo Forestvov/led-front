@@ -1,53 +1,75 @@
 import cn from 'classnames'
+import Image from 'next/image'
 import React, { useState } from 'react'
 import AnimateHeight from 'react-animate-height'
 
 import s from './ExperienceSection.module.scss'
 
-export const ExperienceSection = () => {
+export const ExperienceSection = ({ content, discussProjectUrl, image }) => {
+  const { firstTitle, shortDescription, name, description, fullDescription } =
+    content
+
   const [isOpen, setIsOpen] = useState(false)
 
   return (
     <section className={s.experience}>
       <div className={cn('container', s.experience__body)}>
-        <h2 className={s.experience__title}>
-          10 лет опыта и более сотни успешных кейсов
-        </h2>
+        <h2 className={s.experience__title}>{firstTitle}</h2>
         <div className={s.experience__inner}>
           <div className={s.experience__image}>
-            <img src='/moc/experience.jpg' alt='Полина Тараненко' />
+            <Image
+              src={image}
+              blurDataURL={image}
+              width={423}
+              height={527}
+              alt={name}
+            />
+            <div className={cn(s.experience__info, s.mobile)}>
+              <div
+                className={s.experience__info_position}
+                dangerouslySetInnerHTML={{ __html: shortDescription }}
+              />
+              <div className={s.experience__info_name}>{name}</div>
+            </div>
           </div>
           <div className={s.experience__info}>
-            <div className={s.experience__info_position}>
-              Основатель PR-агентства LED
+            <div className={s.desktop}>
+              <div
+                className={s.experience__info_position}
+                dangerouslySetInnerHTML={{ __html: shortDescription }}
+              />
+              <div className={s.experience__info_name}>{name}</div>
             </div>
-            <div className={s.experience__info_name}>Полина Тараненко</div>
             <div className={s.experience__info_description}>
-              Эксперт по PR и маркетинговым коммуникациям. Начинала карьеру в
-              экономической и международной журналистике (ИТАР-ТАСС, Finam FM).
-              {isOpen ? null : (
-                <>
-                  {' '}
-                  <button
-                    className={s.experience__info_more}
-                    onClick={() => setIsOpen(true)}
-                  >
-                    Читать далее
-                  </button>
-                </>
+              <div dangerouslySetInnerHTML={{ __html: description }} />
+              {isOpen
+                ? null
+                : fullDescription !== null && (
+                    <>
+                      {' '}
+                      <button
+                        className={s.experience__info_more}
+                        onClick={() => setIsOpen(true)}
+                      >
+                        Читать далее
+                      </button>
+                    </>
+                  )}
+              {fullDescription !== null && (
+                <AnimateHeight height={isOpen ? 'auto' : 0}>
+                  <div dangerouslySetInnerHTML={{ __html: fullDescription }} />
+                </AnimateHeight>
               )}
-              <AnimateHeight height={isOpen ? 'auto' : 0}>
-                Эксперт по PR и маркетинговым коммуникациям. Начинала карьеру в
-                экономической и международной журналистике (ИТАР-ТАСС, Finam
-                FM). Эксперт по PR и маркетинговым коммуникациям. Начинала
-                карьеру в экономической и международной журналистике (ИТАР-ТАСС,
-                Finam FM). Эксперт по PR и маркетинговым коммуникациям. Начинала
-                карьеру в экономической и международной журналистике (ИТАР-ТАСС,
-                Finam FM).
-              </AnimateHeight>
             </div>
 
-            <a className={s.experience__info_link}>Обсудить проект</a>
+            <a
+              className={s.experience__info_link}
+              href={discussProjectUrl}
+              target='_blank'
+              rel='noreferrer'
+            >
+              Обсудить проект
+            </a>
           </div>
         </div>
       </div>

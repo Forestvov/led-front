@@ -2,8 +2,11 @@
   "compilerOptions": {
     "baseUrl": "./app/",
     "paths": {
+      "@/pages/*": ["pages/*"],
       "@/ui/*": ["ui/*"],
+      "@/helpers/*": ["helpers/*"],
       "@/hooks/*": ["hooks/*"],
+      "@/data/*": ["data/*"],
       "@/styles/*": ["styles/*"]
     }
   }

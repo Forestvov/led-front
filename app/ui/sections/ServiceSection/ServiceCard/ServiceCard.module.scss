@@ -1,13 +1,16 @@
+@use "app/styles/use/utils";
+@use "app/styles/use/colors";
+
 .card {
   width: 50%;
   height: 464px;
   padding: 60px 60px 53px 47px;
+  color: colors.$colorText;
 
   &:hover {
     .card__text {
     }
   }
-
 
   &.leftTop {
     border-radius: 25px 0 0 0;
@@ -57,5 +60,118 @@
     border-top: 1px solid #D8E2EB;
     padding-top: 19px;
     margin-top: 23px;
+  }
+
+  @include utils.media-max-width(1600){
+    height: 429px;
+    padding: 47px 60px 48px 39px;
+
+    &__number {
+      font-size: 15px;
+    }
+
+    &__title {
+      font-size: 21px;
+      line-height: 26.25px;
+    }
+
+    &__text {
+      font-size: 15px;
+      line-height: 24px;
+      margin-top: 17px;
+      padding-top: 17px;
+    }
+  }
+
+  @include utils.media-max-width(1279) {
+    height: 367px;
+    padding: 50px 35px 45px 50px;
+
+    &__number {
+      font-size: 14px;
+    }
+
+    &__title {
+      font-size: 20px;
+      line-height: 25px;
+      max-width: 100% ;
+    }
+
+    &__text {
+      font-size: 14px;
+      line-height: 22.4px;
+      margin-top: 18px;
+      padding-top: 14px;
+    }
+  }
+
+  @include utils.media-max-width(1023) {
+    height: 376px;
+    padding: 38px 35px 40px 39px;
+
+    &__icon {
+      img{
+        transform: scale(0.89);
+      }
+    }
+
+    &__number {
+      margin-bottom: 15px;
+    }
+
+    &__title {
+      max-width: 190px;
+    }
+
+    &__text {
+      margin-top: 16px;
+      padding-top: 11px;
+    }
+  }
+
+  @include utils.media-max-width(767) {
+    height: auto;
+    min-height: 220px;
+    width: 100%;
+    padding: 26px 35px 30px 29px;
+
+    &.leftTop {
+      border-radius: 25px 25px 0 0;
+    }
+
+    &.rightTop {
+      border-radius: 0;
+    }
+
+    &.bottomLeft {
+      border-radius: 0 0 0 0;
+    }
+
+    &.bottomRight {
+      border-radius: 0 0 0 0;
+    }
+
+    &__icon {
+      img{
+        transform: scale(0.89);
+      }
+    }
+
+    &__number {
+      margin-bottom: 9px;
+      margin-top: 32px;
+    }
+
+    &__title {
+      font-size: 18px;
+      line-height: 22.5px;
+      max-width: 170px;
+    }
+
+    &__text {
+      margin-top: 14px;
+      padding-top: 10px;
+    }
+
   }
 }

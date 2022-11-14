@@ -3,8 +3,7 @@
 
 .item {
   border-top: 1px solid rgba(219, 225, 228, 0.75);
-  padding-top: 29px;
-  padding-bottom: 29px;
+  padding: 29px 0;
 
   &:last-child {
     border-bottom: 1px solid rgba(219, 225, 228, 0.75);
@@ -42,11 +41,12 @@
       position: absolute;
     }
 
-    span:first-child{
+    span:first-child {
       width: 18px;
       height: 2px;
     }
-    span:last-child{
+
+    span:last-child {
       height: 18px;
       width: 2px;
     }
@@ -57,6 +57,67 @@
     line-height: 27.2px;
     font-size: 17px;
     padding-top: 10px;
+  }
+
+  @include utils.media-max-width(1600) {
+    padding: 26px 0;
+
+    &__header {
+      font-size: 16px;
+      line-height: 19.2px;
+    }
+
+    &__text {
+      padding-top: 15px;
+      font-size: 15px;
+      line-height: 26px;
+    }
+
+    &__button {
+      span:first-child {
+        width: 16px;
+        height: 2px;
+      }
+
+      span:last-child {
+        height: 16px;
+        width: 2px;
+      }
+    }
+  }
+
+  @include utils.media-max-width(1279) {
+    &__header {
+      font-size: 15px;
+      line-height: 18px;
+    }
+  }
+
+  @include utils.media-max-width(767) {
+    padding: 21px 0;
+
+    &__header {
+      font-size: 14px;
+      line-height: 16.8px;
+    }
+
+    &__button {
+      span:first-child {
+        width: 14px;
+        height: 1.6px;
+      }
+
+      span:last-child {
+        height: 14px;
+        width: 1.6px;
+      }
+    }
+
+    &__text {
+      font-size: 14px;
+      line-height: 22px;
+    }
+
   }
 
 }

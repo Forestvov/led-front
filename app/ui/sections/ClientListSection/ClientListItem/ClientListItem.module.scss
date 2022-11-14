@@ -6,13 +6,75 @@
   flex: 0 0 calc(25% + 40px);
   width: calc(25% + 40px);
 
+  svg {
+    height: auto;
+    width: 100%;
+  }
+
   &__outline {
     transition-duration: .4s;
     transition-timing-function: cubic-bezier(.25,.74,.22,.99);
+    transition-property: opacity;
+
+    path {
+      transition-duration: 2.5s;
+      transition-timing-function: cubic-bezier(.25,.74,.22,.99);
+      transition-property: stroke-dashoffset
+    }
+
+    &.hidden {
+    }
+
+    &.active path{
+      stroke-dashoffset: 0px!important;
+    }
   }
 
-  img {
+  &__image {
     position: absolute;
     @include utils.absoluteXY();
+
+    img {
+      display: block;
+      transition: all 1.2s cubic-bezier(.25,.74,.22,.99);
+      transform: translateY(100%)!important;
+      opacity: 0;
+
+      &.show {
+        opacity: 1;
+        transform: translateY(0)!important
+      }
+    }
+  }
+
+
+  @include utils.media-max-width(1600) {
+    margin: -20px 0 0 -20px;
+    flex: 0 0 calc(25% + 20px);
+    width: calc(25% + 20px);
+
+    &__image  {
+      transform: translate(-50%,-50%) scale(.8);
+    }
+  }
+
+  @include utils.media-max-width(1279) {
+    &__image  {
+      transform: translate(-50%,-50%) scale(.66);
+    }
+  }
+
+  @include utils.media-max-width(1023) {
+    flex: 0 0 calc(33.3333% + 20px);
+    width: calc(33.3333% + 20px);
+  }
+
+  @include utils.media-max-width(650) {
+    flex: 0 0 calc(50% + 20px);
+    width: calc(50% + 20px);
+
+    &__image {
+      transform: translate(-50%,-50%) scale(.5);
+    }
   }
 }

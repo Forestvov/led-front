@@ -4,27 +4,20 @@ import { Link } from 'react-scroll'
 
 import { CircleArrow, DownloadPdfIcon, LogoIcon } from '@/ui/index'
 
+import { getTypeFile } from '@/helpers/getTypeFile'
+import { getYear } from '@/helpers/getYear'
+
+import { links } from '@/data/links'
+
 import s from './Footer.module.scss'
 
-const links = [
-  { id: 'about', title: 'о компании' },
-  { id: 'service', title: 'услуги', circle: true },
-  { id: 'media', title: 'сми' },
-  { id: 'reviews', title: 'отзывы' },
-  { id: 'clients', title: 'клиенты' },
-  { id: 'team', title: 'команда' },
-  { id: 'faq', title: 'faq' }
-]
-
-export const Footer = () => {
-  const getYear = () => {
-    return new Date().getFullYear()
-  }
+export const Footer = props => {
+  const { email, presentation } = props
 
   return (
     <footer className={s.footer}>
       <div className={'container'}>
-        <div className={s.footer__row}>
+        <div className={cn(s.footer__row, s.first__row)}>
           <div className={cn(s.footer__col, s.footer__logo)}>
             <i className={s.footer__logo_icon}>
               <LogoIcon color='#191C20' />
@@ -43,43 +36,79 @@ export const Footer = () => {
               </li>
             ))}
           </ul>
-          <div className={cn(s.footer__col, s.footer__contacts)}>
-            <div className={s.footer__email}>
-              <div className={s.footer__email_label}>Наша почта</div>
-              <a
-                className={s.footer__email_link}
-                href='mailto:agency@ledpr.com'
-              >
-                agency@ledpr.com
-              </a>
-            </div>
+          <div className={s.mobile}>
             <a className={s.footer__brief}>
               <i className={s.footer__brief_icon}>
                 <CircleArrow />
               </i>
-              Заполнить бриф
+              заполнить бриф
             </a>
-            <a className={s.footer__pdf}>
-              <i className={s.footer__pdf_icon}>
-                <DownloadPdfIcon />
-              </i>
-              <div className={s.footer__pdf_info}>
-                загрузить презентацию
-                <div className={s.footer__pdf_size}>PDF, 3 MB</div>
-              </div>
-            </a>
+            {presentation && (
+              <a
+                className={s.footer__pdf}
+                href={presentation}
+                target='_blank'
+                download={true}
+                rel='noreferrer'
+              >
+                <i className={s.footer__pdf_icon}>
+                  <DownloadPdfIcon />
+                </i>
+                <div className={s.footer__pdf_info}>
+                  загрузить презентацию
+                  <div className={s.footer__pdf_size}>
+                    {getTypeFile(presentation)}, 3 MB
+                  </div>
+                </div>
+              </a>
+            )}
+          </div>
+          <div className={cn(s.footer__col, s.footer__contacts)}>
+            <div className={s.footer__email}>
+              <div className={s.footer__email_label}>Наша почта</div>
+              <a className={s.footer__email_link} href={`mailto:${email}`}>
+                {email}
+              </a>
+            </div>
+            <div className={s.desktop}>
+              <a className={s.footer__brief}>
+                <i className={s.footer__brief_icon}>
+                  <CircleArrow />
+                </i>
+                заполнить бриф
+              </a>
+              {presentation && (
+                <a
+                  className={s.footer__pdf}
+                  href={presentation}
+                  target='_blank'
+                  download={true}
+                  rel='noreferrer'
+                >
+                  <i className={s.footer__pdf_icon}>
+                    <DownloadPdfIcon />
+                  </i>
+                  <div className={s.footer__pdf_info}>
+                    загрузить презентацию
+                    <div className={s.footer__pdf_size}>
+                      {getTypeFile(presentation)}, 3 MB
+                    </div>
+                  </div>
+                </a>
+              )}
+            </div>
           </div>
         </div>
         <div className={cn(s.footer__row, s.footer__bottom)}>
           <div className={s.footer__col}>все права защищены © {getYear()}</div>
           <div className={s.footer__col}>
-            <a href='https://housevl.ru/' target='_blank'>
+            <a href='https://housevl.ru/' target='_blank' rel='noreferrer'>
               разработка сайта - digital-агентство House
             </a>
           </div>
-          <div className={s.footer__col}>
-            <a>политика конфиденциальности</a>
-          </div>
+          {/*<div className={s.footer__col}>*/}
+          {/*  <a>политика конфиденциальности</a>*/}
+          {/*</div>*/}
         </div>
       </div>
     </footer>

@@ -1,11 +1,12 @@
 @use "app/styles/use/typography";
 @use "app/styles/use/colors";
+@use 'app/styles/use/utils';
 
 .media {
   padding-top: 132px;
+  overflow: hidden;
 
-  &__inner {
-
+  &__slide {
   }
 
   &__title {
@@ -13,10 +14,51 @@
     margin-bottom: 63px;
   }
 
-  &__list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    margin-left: -20px;
+  @include utils.media-max-width(1600) {
+    padding-top: 110px;
+
+    &__title {
+      margin-bottom: 50px;
+    }
+  }
+
+  @include utils.media-max-width(1279) {
+    padding-top: 90px;
+
+    &__title {
+      margin-bottom: 40px;
+    }
+
+    &__list {
+      overflow: visible !important;
+    }
+
+    &__slide {
+      width: 275px !important;
+    }
+  }
+
+  @include utils.media-max-width(1023) {
+    padding-top: 75px;
+
+    &__title {
+      margin-bottom: 40px;
+    }
+  }
+
+  @include utils.media-max-width(767) {
+    padding-top: 60px;
+
+    &__title {
+      margin-bottom: 30px;
+    }
+
+    &__list {
+      padding-right: 10px;
+    }
+
+    &__slide {
+      width: 225px !important;
+    }
   }
 }

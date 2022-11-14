@@ -1,4 +1,5 @@
 @use "app/styles/use/colors";
+@use 'app/styles/use/utils';
 
 .footer {
   padding-top: 65px;
@@ -18,6 +19,10 @@
     grid-template-columns: 560px 1fr 255px;
     align-items: flex-start;
     margin-right: -40px;
+
+    .mobile {
+      display: none;
+    }
 
     & + & {
       margin-top: 113px;
@@ -49,6 +54,7 @@
     li {
       position: relative;
       width: fit-content;
+      cursor: pointer;
     }
 
     li + li {
@@ -58,6 +64,7 @@
     a {
       font-size: 17px;
       line-height: 23.8px;
+      font-weight: 600;
       position: relative;
       display: inline-block;
       overflow: hidden;
@@ -72,6 +79,22 @@
 
           &:after {
             transform: skewY(0deg);
+          }
+        }
+      }
+
+      @include utils.media-max-width(1023) {
+        &:hover {
+          span {
+            transform: translateY(0);
+
+            &:before {
+              transform: skewY(0);
+            }
+
+            &:after {
+              transform: skewY(0deg);
+            }
           }
         }
       }
@@ -187,8 +210,260 @@
 
   &__bottom {
     font-size: 15px;
-    a{
+    font-weight: 600;
+
+    a {
       font-size: 15px;
+      font-weight: 600;
     }
   }
+
+  @include utils.media-max-width(1600) {
+    padding-top: 55px;
+    padding-bottom: 30px;
+
+    &__row {
+      grid-template-columns: 480px 1fr 240px;
+      margin-right: 0;
+
+      & + & {
+        margin-top: 95px;
+      }
+    }
+
+    &__navigation {
+      a {
+        font-size: 16px;
+        line-height: 22.4px;
+      }
+
+      li + li {
+        margin-top: 5px;
+      }
+    }
+
+    &__email {
+      margin-bottom: 57px;
+
+      &_label {
+        font-size: 13px;
+        margin-bottom: 2px;
+      }
+
+      &_link {
+        font-size: 20px;
+        line-height: 28px;
+      }
+    }
+
+    &__brief {
+      margin-bottom: 27px;
+      font-size: 16px;
+
+      &_icon {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    &__pdf {
+      &_info {
+        font-size: 16px;
+        line-height: 16px;
+        white-space: nowrap;
+      }
+
+      &_icon svg {
+        width: 40px;
+        height: 40px;
+      }
+
+      &_size {
+        font-size: 13px;
+        line-height: 13px;
+        margin-top: 5px;
+      }
+    }
+
+    &__bottom {
+      font-size: 14px;
+
+      a {
+        font-size: 14px;
+      }
+    }
+  }
+
+  @include utils.media-max-width(1279) {
+    padding-top: 53px;
+
+    &__row {
+      grid-template-columns: 333px 1fr 240px;
+      margin-right: 0;
+
+      & + & {
+        margin-top: 88px;
+      }
+    }
+
+    &__navigation {
+      a {
+        font-size: 15px;
+        line-height: 21px;
+      }
+    }
+
+    &__email {
+      margin-bottom: 53px;
+
+      &_label {
+        font-size: 12px;
+      }
+
+      &_link {
+        font-size: 19px;
+        line-height: 26.6px;
+      }
+    }
+
+    &__brief {
+      font-size: 15px;
+    }
+
+    &__pdf {
+      &_info {
+        font-size: 15px;
+      }
+
+      &_size {
+        font-size: 12px;
+        line-height: 12px;
+      }
+    }
+
+    &__bottom {
+      font-size: 13px;
+
+      a {
+        font-size: 13px;
+      }
+    }
+  }
+
+  @include utils.media-max-width(1023) {
+    &__row {
+      grid-template-columns: 355px 1fr;
+
+      .mobile {
+        display: block;
+        grid-area: actions;
+      }
+
+      &.first__row {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 88px 1.7fr;
+        gap: 0px 0px;
+        grid-template-areas:
+        "logo email"
+        "actions navigation"
+        ". .";
+      }
+
+      & + & {
+        margin-top: 53px;
+      }
+    }
+
+    &__contacts {
+      .desktop {
+        display: none;
+      }
+    }
+
+    &__logo {
+      grid-area: logo;
+    }
+
+    &__email {
+      grid-area: email;
+    }
+
+    &__navigation {
+      grid-area: navigation;
+    }
+  }
+
+  @include utils.media-max-width(767) {
+    padding-top: 38px;
+
+    &__row {
+      & + & {
+        margin-top: 27px;
+      }
+
+      &.first__row {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+        grid-template-areas:
+        "logo"
+        "email"
+        "actions"
+        "navigation";
+      }
+    }
+
+    &__logo {
+      margin-bottom: 30px;
+    }
+
+    &__email {
+      margin-bottom: 25px;
+    }
+
+    &__brief {
+      margin-bottom: 25px;
+
+      &_icon {
+        span {
+          width: 40px;
+          height: 40px;
+        }
+      }
+    }
+
+    &__navigation {
+      padding-top: 31px;
+      margin-top: 26px;
+      padding-bottom: 16px;
+
+      border-top: 1px solid #F0F0F0;
+      border-bottom: 1px solid #F0F0F0;
+      display: flex;
+      flex-wrap: wrap;
+
+      li {
+        width: 50%;
+        margin-bottom: 10px;
+
+        & + li {
+          margin-top: 0;
+        }
+
+        i {
+          right: 65% !important;
+        }
+      }
+    }
+
+    &__bottom {
+      display: flex;
+      flex-direction: column;
+
+      .footer__col + .footer__col {
+        margin-top: 15px;
+      }
+    }
+
+  }
+
 }

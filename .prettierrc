@@ -9,8 +9,10 @@
   "importOrder": [
     "<THIRD_PARTY_MODULES",
     "^@/ui/(.*)$",
+    "^@/helpers/(.*)$",
     "^@/hooks/(.*)$",
     "^@/utils/(.*)$",
+    "^@/data/(.*)$",
     "^../(.*)$",
     "^./(.*)$",
     "^(.scss)$"

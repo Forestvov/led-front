@@ -5,12 +5,15 @@ import AnimateHeight from 'react-animate-height'
 import s from './ServiceCard.module.scss'
 
 export const ServiceCard = props => {
-  const { number, position, icon, title, text, colorFirst, colorSecond } = props
+  const { number, position, image, name, textUsUrl, description, colors } =
+    props
 
   const [hover, setHover] = useState(false)
 
   return (
     <a
+      href={textUsUrl}
+      target='_blank'
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className={cn(s.card, {
@@ -20,19 +23,23 @@ export const ServiceCard = props => {
         [s.bottomRight]: position === 'bottomRight'
       })}
       style={{
-        background: `linear-gradient(180deg, ${colorFirst} 0%, ${colorSecond} 100%)`
+        background: `linear-gradient(180deg, ${colors.first} 0%, ${colors.second} 100%)`
       }}
+      rel='noreferrer'
     >
       <div className={s.card__content}>
         <div className={s.card__icon}>
-          <img src={icon} alt={title} />
+          <img src={image} alt={name} />
         </div>
         <div className={s.card__number}>
           {number > 9 ? number : '0' + number}
         </div>
-        <div className={s.card__title}>{title}</div>
+        <div className={s.card__title}>{name}</div>
         <AnimateHeight duration={800} height={hover ? 'auto' : 0}>
-          <p className={s.card__text}>{text}</p>
+          <div
+            className={s.card__text}
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
         </AnimateHeight>
       </div>
     </a>

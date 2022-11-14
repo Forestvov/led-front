@@ -5,15 +5,22 @@ import { CircleArrow, DownActions } from '@/ui/index'
 
 import s from './MainSection.module.scss'
 
-export const MainSection = () => {
+export const MainSection = props => {
+  const { presentation, ctxBlock, telegramUrl, briefUrl } = props
+
   return (
     <section className={s.main}>
       <div className={cn('container', s.main__content)}>
-        <h1 className={s.main__title}>
-          LED PR — коммуникационное агентство нового формата. Мы знаем, как
-          сделать ваш бизнес узнаваемым.
-        </h1>
-        <a className={s.main__brif}>
+        <h1
+          className={s.main__title}
+          dangerouslySetInnerHTML={{ __html: ctxBlock.title }}
+        />
+        <a
+          className={s.main__brif}
+          href={briefUrl}
+          target='_blank'
+          rel='noreferrer'
+        >
           <i className={s.main__brif_icon}>
             <CircleArrow />
           </i>
@@ -21,10 +28,10 @@ export const MainSection = () => {
         </a>
       </div>
       <div className={s.main__actions}>
-        <DownActions />
+        <DownActions presentation={presentation} telegramUrl={telegramUrl} />
       </div>
-      <video className={s.main__video} muted autoPlay loop>
-        <source src='/video/background.mp4' type='video/mp4' />
+      <video className={s.main__video} muted autoPlay playsInline loop>
+        <source src={ctxBlock.video} type='video/mp4' />
       </video>
     </section>
   )

@@ -1,4 +1,5 @@
 @use "app/styles/use/typography";
+@use 'app/styles/use/utils';
 
 .list {
   padding-top: 130px;
@@ -21,5 +22,54 @@
     margin: 75px auto 0;
     display: block;
     transition: 400ms;
+  }
+
+  @include utils.media-max-width(1600) {
+    padding-top: 108px;
+    padding-bottom: 110px;
+
+    &__title {
+      margin-bottom: 105px;
+    }
+
+    &__items {
+      margin-left: 20px;
+    }
+
+    &__more {
+      margin: 60px auto 0;
+    }
+  }
+
+  @include utils.media-max-width(1279) {
+    padding: 90px 0;
+
+    &__title {
+      margin-bottom: 85px;
+    }
+
+    &__more {
+      margin: 45px auto 0;
+    }
+  }
+
+  @include utils.media-max-width(1023) {
+    padding: 75px 0;
+
+    &__title {
+      margin-bottom: 70px;
+    }
+  }
+
+  @include utils.media-max-width(650) {
+    padding: 60px 0;
+
+    &__title {
+      margin-bottom: 40px;
+    }
+
+    &__more {
+      margin: 35px auto 0;
+    }
   }
 }
