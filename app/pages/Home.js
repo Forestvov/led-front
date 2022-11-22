@@ -42,17 +42,20 @@ export const Home = props => {
     workTogetherUrl,
     textUsUrl,
     presentation,
+    presentationSize,
     askQuestionUrl
   } = contacts
 
   return (
     <Layout
       title={title}
+      briefUrl={briefUrl}
       description={description}
       keywords={keywords}
       email={email}
       discussProjectUrl={discussProjectUrl}
       presentation={presentation}
+      presentationSize={presentationSize}
     >
       <MainSection
         presentation={presentation}

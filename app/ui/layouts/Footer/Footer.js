@@ -12,7 +12,7 @@ import { links } from '@/data/links'
 import s from './Footer.module.scss'
 
 export const Footer = props => {
-  const { email, presentation } = props
+  const { email, presentation, briefUrl, presentationSize } = props
 
   return (
     <footer className={s.footer}>
@@ -37,7 +37,12 @@ export const Footer = props => {
             ))}
           </ul>
           <div className={s.mobile}>
-            <a className={s.footer__brief}>
+            <a
+              className={s.footer__brief}
+              href={briefUrl}
+              target='_blank'
+              rel='noreferrer'
+            >
               <i className={s.footer__brief_icon}>
                 <CircleArrow />
               </i>
@@ -53,11 +58,13 @@ export const Footer = props => {
               >
                 <i className={s.footer__pdf_icon}>
                   <DownloadPdfIcon />
+                  <DownloadPdfIcon />
                 </i>
                 <div className={s.footer__pdf_info}>
                   загрузить презентацию
                   <div className={s.footer__pdf_size}>
-                    {getTypeFile(presentation)}, 3 MB
+                    {getTypeFile(presentation)}, {Math.floor(presentationSize)}{' '}
+                    MB
                   </div>
                 </div>
               </a>
@@ -67,11 +74,16 @@ export const Footer = props => {
             <div className={s.footer__email}>
               <div className={s.footer__email_label}>Наша почта</div>
               <a className={s.footer__email_link} href={`mailto:${email}`}>
-                {email}
+                <span>{email}</span>
               </a>
             </div>
             <div className={s.desktop}>
-              <a className={s.footer__brief}>
+              <a
+                className={s.footer__brief}
+                href={briefUrl}
+                target='_blank'
+                rel='noreferrer'
+              >
                 <i className={s.footer__brief_icon}>
                   <CircleArrow />
                 </i>
@@ -87,11 +99,13 @@ export const Footer = props => {
                 >
                   <i className={s.footer__pdf_icon}>
                     <DownloadPdfIcon />
+                    <DownloadPdfIcon />
                   </i>
                   <div className={s.footer__pdf_info}>
                     загрузить презентацию
                     <div className={s.footer__pdf_size}>
-                      {getTypeFile(presentation)}, 3 MB
+                      {getTypeFile(presentation)},{' '}
+                      {Math.floor(presentationSize)} MB
                     </div>
                   </div>
                 </a>
@@ -103,7 +117,7 @@ export const Footer = props => {
           <div className={s.footer__col}>все права защищены © {getYear()}</div>
           <div className={s.footer__col}>
             <a href='https://housevl.ru/' target='_blank' rel='noreferrer'>
-              разработка сайта - digital-агентство House
+              <span>разработка сайта - digital-агентство House</span>
             </a>
           </div>
           {/*<div className={s.footer__col}>*/}

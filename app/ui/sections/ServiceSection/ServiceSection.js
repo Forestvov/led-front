@@ -128,8 +128,8 @@ export const ServiceSection = props => {
                     <ServiceCard
                       textUsUrl={textUsUrl}
                       position={setPositionOther(idx + 1, lengthCutArr)}
-                      key={idx}
-                      number={idx + 1}
+                      key={7 + idx}
+                      number={7 + idx}
                       {...card}
                     />
                   ))}

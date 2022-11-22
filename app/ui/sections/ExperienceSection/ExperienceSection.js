@@ -68,7 +68,7 @@ export const ExperienceSection = ({ content, discussProjectUrl, image }) => {
               target='_blank'
               rel='noreferrer'
             >
-              Обсудить проект
+              <span data-text='Обсудить проект'>Обсудить проект</span>
             </a>
           </div>
         </div>

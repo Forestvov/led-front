@@ -8,11 +8,6 @@
   color: colors.$colorText;
   cursor: none;
 
-  &:hover {
-    .card__text {
-    }
-  }
-
   &.leftTop {
     border-radius: 25px 0 0 0;
   }
@@ -58,7 +53,7 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 26px;
-    border-top: 1px solid #D8E2EB;
+    border-top: 1px solid rgba(#191E23, .2);
     padding-top: 19px;
     margin-top: 23px;
   }
@@ -109,7 +104,7 @@
   @include utils.media-max-width(1023) {
     height: 376px;
     padding: 38px 35px 40px 39px;
-    cursor: auto;
+    cursor: pointer;
 
     &__icon {
       img{

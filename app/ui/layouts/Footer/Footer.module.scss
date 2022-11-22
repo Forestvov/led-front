@@ -167,6 +167,31 @@
       font-size: 21px;
       line-height: 29px;
       font-weight: 600;
+
+      span {
+        position: relative;
+        &::before {
+          position: absolute;
+          content: '';
+          height: 1px;
+          background-color: colors.$colorText;
+          bottom:0;
+          display: block;
+          width: 0;
+          transition: width .4s;
+          right:0;
+          left: initial;
+        }
+      }
+
+      &:hover {
+        span::before {
+          width: 100%;
+          right:initial;
+          left: 0;
+        }
+      }
+
     }
   }
 
@@ -181,6 +206,26 @@
 
     &_icon {
       margin-right: 16px;
+
+      svg {
+        position: absolute;
+        @include utils.absoluteXY();
+        z-index: 1;
+        transition: 400ms;
+      }
+
+      svg:first-child {
+        transform: translate(-400%,-50%);
+      }
+    }
+
+    &:hover {
+      svg:first-child {
+        transform: translate(-50%,-50%);
+      }
+      svg:last-child {
+        transform: translate(400%,-50%);
+      }
     }
   }
 
@@ -198,6 +243,23 @@
 
     &_icon {
       margin-right: 16px;
+      border-radius: 50%;
+      border: 2px solid colors.$colorText;
+      flex: 0 0 auto;
+      width: 42px;
+      height: 42px;
+      position: relative;
+      overflow: hidden;
+
+      svg {
+        position: absolute;
+        @include utils.absoluteXY();
+        transition: 400ms;
+
+        &:first-child{
+          transform: translate(-50%, -200%);
+        }
+      }
     }
 
     &_size {
@@ -205,6 +267,17 @@
       font-size: 14px;
       color: #B1B6BE;
       font-feature-settings: 'pnum' on, 'lnum' on;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    &:hover {
+      svg:first-child{
+        transform: translate(-50%, -50%);
+      }
+      svg:last-child{
+        transform: translate(-50%, 200%);
+      }
     }
   }
 
@@ -215,6 +288,31 @@
     a {
       font-size: 15px;
       font-weight: 600;
+      position: relative;
+
+      span {
+        position: relative;
+        &::before {
+          position: absolute;
+          content: '';
+          height: 1px;
+          background-color: colors.$colorText;
+          bottom:0;
+          display: block;
+          width: 0;
+          transition: width .4s;
+          right:0;
+          left: initial;
+        }
+      }
+
+      &:hover {
+        span::before {
+          width: 100%;
+          right:initial;
+          left: 0;
+        }
+      }
     }
   }
 
@@ -450,7 +548,8 @@
         }
 
         i {
-          right: 65% !important;
+          right: auto !important;
+          left: 55px;
         }
       }
     }

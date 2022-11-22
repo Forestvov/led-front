@@ -4,7 +4,7 @@
 
 
 .service {
-  padding: 160px 0;
+  padding-bottom: 160px;
   position: relative;
   background-color: #fff;
 
@@ -47,6 +47,7 @@
 
   &__left {
     margin-top: 48px;
+    padding-top: 160px;
     max-width: 501px;
   }
 
@@ -69,6 +70,7 @@
 
   &__right {
     max-width: 826px;
+    padding-top: 160px;
   }
 
   &__hovers {
@@ -98,20 +100,35 @@
     font-size: 17px;
     margin: 60px auto 0;
     color: colors.$colorText;
+    transition: 600ms ease;
 
     i {
       margin-right: 8px;
+
+      svg path {
+        transition: 600ms ease;
+      }
     }
 
-    &:hover i svg {
-      animation: move 1.5s infinite linear;
+    &:hover {
+      background-color: colors.$colorText;
+      color: #fff;
+
+      i svg {
+        animation: move 1.5s infinite linear;
+
+        path {
+          fill: #fff;
+        }
+      }
     }
   }
 
   @include utils.media-max-width(1600) {
-    padding: 110px 0;
+    padding-bottom: 110px;
 
     &__left {
+      padding-top: 110px;
       max-width: 420px;
     }
 
@@ -126,6 +143,7 @@
     }
 
     &__right {
+      padding-top: 110px;
       max-width: 680px;
     }
 
@@ -154,6 +172,7 @@
       max-width: 800px;
       margin-top: 0;
       margin-bottom: 60px;
+      padding-top: 0;
     }
 
     &__text {
@@ -164,6 +183,7 @@
 
     &__right {
       max-width: 100%;
+      padding-top: 0;
     }
 
     &__more {

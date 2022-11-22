@@ -8,6 +8,7 @@ export const CircleArrow = () => {
   return (
     <span className={s.circle}>
       <ArrowRight />
+      <ArrowRight />
     </span>
   )
 }

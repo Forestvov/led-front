@@ -1,4 +1,5 @@
 @use "app/styles/use/utils";
+@use "app/styles/use/colors";
 
 .slider {
   margin-top: 195px;
@@ -20,6 +21,11 @@
     font-size: 110px;
     line-height: 132px;
     white-space: nowrap;
+    transition: 400ms;
+
+    &:hover {
+      color: colors.$colorText;
+    }
   }
 
   @include utils.media-max-width(1600) {

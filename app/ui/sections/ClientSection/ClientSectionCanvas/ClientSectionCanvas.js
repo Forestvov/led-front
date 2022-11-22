@@ -308,7 +308,7 @@ export const ClientSectionCanvas = ({ firstColor, secondColor, position }) => {
       lava0 = new LavaLamp(
         screen.width,
         screen.height,
-        8,
+        10,
         firstColor,
         secondColor
       )

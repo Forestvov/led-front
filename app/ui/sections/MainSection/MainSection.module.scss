@@ -52,10 +52,55 @@
     padding-left: 15px;
     font-weight: 600;
     font-size: 17px;
+    transition: 500ms;
+
+    span {
+      transition: 500ms;
+
+      svg path {
+        transition: 500ms;
+      }
+    }
+
+    &:hover {
+      background-color: colors.$colorText;
+      color: #fff;
+
+      span {
+        background-color: #fff;
+
+        svg path {
+          fill: colors.$colorText;
+          stroke: colors.$colorText;
+        }
+      }
+    }
 
     &_icon {
       flex: 0 0 auto;
       margin-right: 15px;
+      position: relative;
+      display: block;
+
+      svg:first-child {
+        transform: translate(-400%,-50%);
+      }
+
+      svg {
+        position: absolute;
+        @include utils.absoluteXY();
+        transition: 400ms;
+      }
+    }
+
+    &:hover {
+      svg:first-child {
+        transform: translate(-50%, -50%);
+      }
+
+      svg:last-child {
+        transform: translate(400%, -50%);
+      }
     }
   }
 
@@ -93,7 +138,7 @@
   }
 
   @include utils.media-max-width(1023) {
-    &__title{
+    &__title {
       margin-bottom: 40px;
     }
 

@@ -9,6 +9,11 @@
   flex-direction: column;
   height: 411px;
   color: colors.$colorText;
+  transition: 400ms;
+
+  &:hover {
+    border-color: colors.$colorText;
+  }
 
   &__title {
     font-weight: 600;

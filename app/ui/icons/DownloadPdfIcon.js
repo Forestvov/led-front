@@ -9,7 +9,6 @@ export const DownloadPdfIcon = () => {
       fill='none'
       xmlns='http://www.w3.org/2000/svg'
     >
-      <circle cx='21' cy='21' r='20' stroke='#191C20' strokeWidth='2' />
       <mask
         id='path-2-outside-1_145_20'
         maskUnits='userSpaceOnUse'

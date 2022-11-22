@@ -1,5 +1,5 @@
 import cn from 'classnames'
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 
 import { CircleArrow, DownActions } from '@/ui/index'
 
@@ -7,6 +7,14 @@ import s from './MainSection.module.scss'
 
 export const MainSection = props => {
   const { presentation, ctxBlock, telegramUrl, briefUrl } = props
+
+  const ref = useRef(null)
+
+  useEffect(() => {
+    if (ref) {
+      ref.current.play()
+    }
+  }, [])
 
   return (
     <section className={s.main}>
@@ -30,7 +38,14 @@ export const MainSection = props => {
       <div className={s.main__actions}>
         <DownActions presentation={presentation} telegramUrl={telegramUrl} />
       </div>
-      <video className={s.main__video} muted autoPlay playsInline loop>
+      <video
+        ref={ref}
+        className={s.main__video}
+        muted
+        autoPlay
+        playsInline
+        loop
+      >
         <source src={ctxBlock.video} type='video/mp4' />
       </video>
     </section>

@@ -13,6 +13,10 @@
     svg path {
       fill: #000;
     }
+
+    span::before {
+      background-color: #000;
+    }
   }
 
   a {
@@ -27,13 +31,38 @@
     }
 
     span {
-      text-decoration: underline;
+      position: relative;
+      &::before {
+        position: absolute;
+        content: '';
+        height: 1px;
+        background-color: #fff;
+        bottom:0;
+        display: block;
+        width: 0;
+        transition: width .4s;
+        right:0;
+        left: initial;
+      }
+    }
+
+    &:hover {
+      span::before {
+        width: 100%;
+        right:initial;
+        left: 0;
+      }
     }
   }
 
   &__scroll {
     margin-right: 20px;
-    animation: spin 4s infinite ease-in;
+
+    svg {
+      path:last-child{
+        animation: spin 4s infinite ease-in;
+      }
+    }
   }
 
   &__telegram {
@@ -74,12 +103,12 @@
 
 @keyframes spin {
   0% {
-    transform: translate3d(0, -20%, 0);
+    transform: translate3d(0, -1%, 0);
   }
   50% {
-    transform: translate3d(0, 20%, 0);
+    transform: translate3d(0, 15%, 0);
   }
   100% {
-    transform: translate3d(0, -20%, 0);
+    transform: translate3d(0, -1%, 0);
   }
 }

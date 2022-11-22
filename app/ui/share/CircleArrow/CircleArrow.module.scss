@@ -6,11 +6,13 @@
   height: 42px;
   background-color: colors.$colorText;
   border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  flex: 0 0 auto;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  transition: 400ms;
 
-  @include utils.media-max-width(1600){
+  @include utils.media-max-width(1600) {
     width: 39px;
     height: 39px;
   }
