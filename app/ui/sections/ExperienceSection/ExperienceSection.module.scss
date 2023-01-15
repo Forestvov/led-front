@@ -69,7 +69,10 @@
       font-weight: 500;
       line-height: 51px;
       font-size: 32px;
-      margin-bottom: 57px;
+
+      button {
+        display: inline;
+      }
     }
 
     &_more {
@@ -102,58 +105,27 @@
       @include typography.ButtonLink();
       background-color: #fff;
       overflow: hidden;
+      margin-top: 57px;
+      width: 227px;
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
 
-      & span {
-        display: inline-block;
-        position: relative;
-        z-index: 1;
-        color: transparent;
-        transition: transform 2s cubic-bezier(.19, 1, .22, 1),
-        -webkit-transform 2s cubic-bezier(.19, 1, .22, 1),
-        -moz-transform 2s cubic-bezier(.19, 1, .22, 1),
-        -o-transform 2s cubic-bezier(.19, 1, .22, 1);
-
-        &:before,
-        &:after {
-          content: attr(data-text);
-          display: block;
-          position: absolute;
-          transition: transform 2s cubic-bezier(.19, 1, .22, 1),
-          -webkit-transform 2s cubic-bezier(.19, 1, .22, 1),
-          -moz-transform 2s cubic-bezier(.19, 1, .22, 1),
-          -o-transform 2s cubic-bezier(.19, 1, .22, 1);
-        }
-
-        &:before {
-          color: colors.$colorText;
-          top: 0;
-          transform: skewY(0);
-          transform-origin: right bottom;
-        }
-
-        &:after {
-          color: colors.$colorText;
-          top: 105%;
-          transform: skewY(7deg);
-          transform-origin: left top;
-        }
+      svg {
+        opacity: 0;
+        margin-left: 5px;
+        flex:  0 0 auto;
+        transition: 600ms ease;
       }
 
       &:hover {
         background-color: #fff;
         border-color: #fff;
         color: colors.$colorText;
+        width: 248px;
 
-        & span {
-          transform: translateY(-105%);
-
-          &:before {
-            transform: skewY(7deg);
-          }
-
-          &:after {
-            transform: skewY(0deg);
-          }
+        svg {
+          opacity: 1;
         }
       }
     }
@@ -188,7 +160,20 @@
       &_description {
         line-height: 38.4px;
         font-size: 24px;
-        margin-bottom: 55px;
+      }
+
+      &_link {
+        margin-top: 55px;
+        width: 205px;
+
+        svg {
+          width: 17px;
+          height: auto;
+        }
+
+        &:hover {
+          width: 220px;
+        }
       }
 
       &_more {
@@ -226,7 +211,19 @@
       &_description {
         line-height: 35.2px;
         font-size: 22px;
-        margin-bottom: 50px;
+      }
+
+      &_link {
+        margin-top: 50px;
+        width: 197px;
+
+        svg {
+          width: 16px;
+        }
+
+        &:hover {
+          width: 205px;
+        }
       }
 
       &_more {
@@ -264,7 +261,19 @@
       &_description {
         line-height: 28.8px;
         font-size: 18px;
-        margin-bottom: 30px;
+      }
+
+      &_link {
+        margin-top: 30px;
+        width: fit-content;
+
+        svg {
+          display: none;
+        }
+
+        &:hover {
+          width: fit-content;
+        }
       }
 
       &_more {
@@ -289,6 +298,7 @@
       display: flex;
       padding-top: 0;
       height: auto;
+      margin-bottom: 20px;
 
       &::before {
         height: 142px;
@@ -307,7 +317,6 @@
     }
 
     &__info {
-      margin-top: 0;
       max-width: 458px;
 
       &.mobile {
@@ -334,8 +343,10 @@
       &_description {
         line-height: 25.6px;
         font-size: 16px;
-        margin-bottom: 40px;
-        margin-top: 20px;
+      }
+
+      &_link {
+        margin-top: 40px;
       }
 
       &_more {

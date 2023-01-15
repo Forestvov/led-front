@@ -2,7 +2,7 @@ import cn from 'classnames'
 import Image from 'next/image'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
-import { SlideTimer } from '@/ui/index'
+import { SlideTimer } from '@/ui/sections/ClientSection/ClientSectionSlider/SlideTimer'
 
 import s from './ClientSectionSlider.module.scss'
 
@@ -108,6 +108,66 @@ export const ClientSectionSlider = ({ slides }) => {
     }
 
     setCurrentIndex(idx)
+  }
+
+  const onPrevSlide = idx => {
+    let sliderItems = sliderWrapper.current.children
+
+    let prevIndex = idx - 1 < 0 ? sliderItems.length - 1 : idx - 1
+    let nextIdx = sliderItems[idx + 1] ? idx + 1 : 0
+
+    setTimeout(() => {
+      sliderItems[currentIndex].classList.add('clients-slide-swipe')
+      sliderItems[prevIndex].classList.add('clients-slide-active')
+    }, 10)
+
+    setTimeout(() => {
+      setIndex(prevIndex)
+
+      sliderItems[idx].classList.add('clients-slide-next')
+
+      sliderItems[currentIndex].classList.remove('clients-slide-active')
+      sliderItems[currentIndex].classList.remove('clients-slide-swipe')
+      sliderItems[nextIdx].classList.remove('clients-slide-next')
+
+      for (let i = 0; i < sliderItems.length; i++) {
+        sliderItems[i].classList.remove('clients-slide-enter')
+      }
+    }, 500)
+
+    setCurrentIndex(prevIndex)
+  }
+
+  const onNextSlide = idx => {
+    let sliderItems = sliderWrapper.current.children
+
+    let nextIdx = sliderItems[idx + 1] ? idx + 1 : 0
+    // let prevIndex = idx - 1 < 0 ? sliderItems.length - 1 : idx - 1
+
+    console.log(idx)
+    console.log(nextIdx)
+
+    setTimeout(() => {
+      // sliderItems[currentIndex].classList.add('clients-slide-swipe')
+      // sliderItems[nextIdx].classList.add('clients-slide-active')
+    }, 10)
+
+    setTimeout(() => {
+      setIndex(nextIdx)
+
+      //
+      // sliderItems[nextIdx].classList.add('clients-slide-next')
+      //
+      // sliderItems[currentIndex].classList.remove('clients-slide-active')
+      // sliderItems[currentIndex].classList.remove('clients-slide-swipe')
+      // sliderItems[currentIndex].classList.remove('clients-slide-next')
+      //
+      // for (let i = 0; i < sliderItems.length; i++) {
+      //   sliderItems[i].classList.remove('clients-slide-enter')
+      // }
+    }, 500)
+
+    setCurrentIndex(nextIdx)
   }
 
   const onNextSlideAuto = idx => {
@@ -237,9 +297,9 @@ export const ClientSectionSlider = ({ slides }) => {
 
       let nextNextIdx = sliderItems[currentIndex + 2]
         ? idx + 2
-        : idx === 2
-        ? 1
-        : 0
+        : idx === sliderItems.length - 2
+        ? 0
+        : 1
 
       setTimeout(() => {
         sliderItems[currentIndex].classList.add('clients-slide-swipe')
@@ -360,14 +420,26 @@ export const ClientSectionSlider = ({ slides }) => {
                       </div>
                     </div>
                   </div>
-                  {slides.length > 1 && (
-                    <SlideTimer
-                      current={idx + 1}
-                      onChangeSlide={onNextSlideAuto}
-                      currentSlideIndex={currentIndex}
-                      total={slides.length}
-                    />
-                  )}
+                  <div
+                    className={cn(s.slide__navigation, {
+                      [s.show]: currentIndex === idx
+                    })}
+                  >
+                    {/*<button onClick={() => onPrevSlide(idx)}>*/}
+                    {/*<ArrowSliderLeft />*/}
+                    {/*</button>*/}
+                    {slides.length > 1 && (
+                      <SlideTimer
+                        current={idx + 1}
+                        onChangeSlide={onNextSlideAuto}
+                        currentSlideIndex={currentIndex}
+                        total={slides.length}
+                      />
+                    )}
+                    {/*<button onClick={() => onNextSlide(idx)}>*/}
+                    {/*  <ArrowSliderRight />*/}
+                    {/*</button>*/}
+                  </div>
                 </div>
               </div>
             </div>

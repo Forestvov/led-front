@@ -1,7 +1,8 @@
 import cn from 'classnames'
 import React, { useEffect, useRef } from 'react'
 
-import { CircleArrow, DownActions } from '@/ui/index'
+import { DownActions } from '@/ui/index'
+import { BannerLink } from '@/ui/sections/MainSection/BannerLink'
 
 import s from './MainSection.module.scss'
 
@@ -23,17 +24,7 @@ export const MainSection = props => {
           className={s.main__title}
           dangerouslySetInnerHTML={{ __html: ctxBlock.title }}
         />
-        <a
-          className={s.main__brif}
-          href={briefUrl}
-          target='_blank'
-          rel='noreferrer'
-        >
-          <i className={s.main__brif_icon}>
-            <CircleArrow />
-          </i>
-          Заполнить бриф
-        </a>
+        <BannerLink briefUrl={briefUrl} />
       </div>
       <div className={s.main__actions}>
         <DownActions presentation={presentation} telegramUrl={telegramUrl} />

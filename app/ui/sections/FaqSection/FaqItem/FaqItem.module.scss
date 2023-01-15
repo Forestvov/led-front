@@ -57,6 +57,11 @@
     line-height: 27.2px;
     font-size: 17px;
     padding-top: 10px;
+
+    a{
+      color: colors.$colorText;
+      text-decoration: underline;
+    }
   }
 
   @include utils.media-max-width(1600) {

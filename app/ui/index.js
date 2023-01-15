@@ -54,6 +54,7 @@ export * from './sections/SliderLoopBriefSection/SliderLoopBriefSection'
 //Icons
 export * from './icons/LogoIcon'
 export * from './icons/ArrowRight'
+export * from './icons/ArrowSlider'
 export * from './icons/DownloadIcon'
 export * from './icons/MouseIcon'
 export * from './icons/TelegramIcon'

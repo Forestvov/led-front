@@ -61,7 +61,7 @@ export const Footer = props => {
                   <DownloadPdfIcon />
                 </i>
                 <div className={s.footer__pdf_info}>
-                  загрузить презентацию
+                  скачать презентацию
                   <div className={s.footer__pdf_size}>
                     {getTypeFile(presentation)}, {Math.floor(presentationSize)}{' '}
                     MB
@@ -102,7 +102,7 @@ export const Footer = props => {
                     <DownloadPdfIcon />
                   </i>
                   <div className={s.footer__pdf_info}>
-                    загрузить презентацию
+                    скачать презентацию
                     <div className={s.footer__pdf_size}>
                       {getTypeFile(presentation)},{' '}
                       {Math.floor(presentationSize)} MB

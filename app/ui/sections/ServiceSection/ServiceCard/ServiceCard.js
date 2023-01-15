@@ -1,12 +1,21 @@
 import cn from 'classnames'
-import React, { useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import AnimateHeight from 'react-animate-height'
 
+import { useOnOutsideClick } from '@/hooks/useOnOutsideClick'
 import useWindowSize from '@/hooks/useWindowSize'
 
 import s from './ServiceCard.module.scss'
 
-const CardContent = ({ hover, image, name, number, description }) => (
+const CardContent = ({
+  hover,
+  image,
+  name,
+  number,
+  link,
+  description,
+  isMobile
+}) => (
   <div className={s.card__content}>
     <div className={s.card__icon}>
       <img src={image} alt={name} />
@@ -14,10 +23,22 @@ const CardContent = ({ hover, image, name, number, description }) => (
     <div className={s.card__number}>{number > 9 ? number : '0' + number}</div>
     <div className={s.card__title}>{name}</div>
     <AnimateHeight duration={800} height={hover ? 'auto' : 0}>
-      <div
-        className={s.card__text}
-        dangerouslySetInnerHTML={{ __html: description }}
-      />
+      <div>
+        <div
+          className={s.card__text}
+          dangerouslySetInnerHTML={{ __html: description }}
+        />
+        {isMobile && (
+          <a
+            className={s.mobileLink}
+            href={link}
+            target='_blank'
+            rel='noreferrer'
+          >
+            Заполнить бриф
+          </a>
+        )}
+      </div>
     </AnimateHeight>
   </div>
 )
@@ -27,10 +48,21 @@ export const ServiceCard = props => {
     props
 
   const [hover, setHover] = useState(false)
+  const ref = useRef(null)
 
   const { width } = useWindowSize()
+
+  useEffect(() => {
+    if (number === 1 && width <= 1023 && width > 0) {
+      setHover(true)
+    }
+  }, [number, width])
+
+  useOnOutsideClick(ref, () => (width <= 1023 ? setHover(false) : null))
+
   return width <= 1023 ? (
     <div
+      ref={ref}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className={cn(s.card, {
@@ -49,6 +81,8 @@ export const ServiceCard = props => {
         number={number}
         hover={hover}
         name={name}
+        link={textUsUrl}
+        isMobile
       />
     </div>
   ) : (

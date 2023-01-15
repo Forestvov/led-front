@@ -24,7 +24,7 @@ export const DownActions = props => {
           <i>
             <DownloadIcon />
           </i>
-          <span>Загрузить презентацию</span>
+          <span>Скачать презентацию</span>
         </a>
       )}
       {showScroll && (

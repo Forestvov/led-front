@@ -1,5 +1,6 @@
 import cn from 'classnames'
-import React from 'react'
+import React, { useState } from 'react'
+import AnimateHeight from 'react-animate-height'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { AboutSliderItem } from '@/ui/sections/AboutSection/AboutSliderItem/AboutSliderItem'
@@ -49,6 +50,8 @@ const paramsSlider = {
 export const AboutSection = props => {
   const { topBlock, branches, bottomBlock, discussProjectUrl } = props
 
+  const [isOpen, setIsOpen] = useState(false)
+
   return (
     <section id='about' className={s.about}>
       <div className={cn('container', s.about__container)}>
@@ -71,10 +74,33 @@ export const AboutSection = props => {
             dangerouslySetInnerHTML={{ __html: bottomBlock.title }}
           />
           <div className={s.about__description_content}>
-            <div
-              className={s.about__description_text}
-              dangerouslySetInnerHTML={{ __html: bottomBlock.description }}
-            />
+            <div className={s.about__description_text}>
+              <div
+                dangerouslySetInnerHTML={{ __html: bottomBlock.description }}
+              />
+            </div>
+
+            {bottomBlock.fullDescription !== null && (
+              <AnimateHeight height={isOpen ? 'auto' : 0}>
+                <div className={s.about__description_text}>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: bottomBlock.fullDescription
+                    }}
+                  />
+                </div>
+              </AnimateHeight>
+            )}
+
+            {bottomBlock.fullDescription !== null && (
+              <button
+                className={s.about__description_more}
+                onClick={() => setIsOpen(!isOpen)}
+              >
+                {isOpen ? 'Свернуть' : 'Читать далее'}
+              </button>
+            )}
+
             <a
               className={s.about__description_project}
               href={discussProjectUrl}

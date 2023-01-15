@@ -8,6 +8,24 @@
   color: colors.$colorText;
   cursor: none;
 
+  .mobileLink {
+    font-size: 14px;
+    margin-top: 13px;
+    position: relative;
+    color: colors.$colorText;
+    display: none;
+
+    &::before{
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      content: '';
+      left: 0;
+      bottom: -1px;
+      background-color: colors.$colorText;
+    }
+  }
+
   &.leftTop {
     border-radius: 25px 0 0 0;
   }
@@ -105,6 +123,10 @@
     height: 376px;
     padding: 38px 35px 40px 39px;
     cursor: pointer;
+
+    .mobileLink {
+      display: inline-block;
+    }
 
     &__icon {
       img{

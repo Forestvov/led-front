@@ -1,14 +1,31 @@
 import cn from 'classnames'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import { ClientSectionCanvas, ClientSectionSlider } from '@/ui/index'
 
+import Magnetic from '@/helpers/magnetic'
+
 import s from './ClientSection.module.scss'
 
+const magnificConfig = {
+  y: 0.5,
+  x: 0.4,
+  s: 0.5,
+  rs: 1
+}
+
 export const ClientSection = ({ clients, reviews }) => {
+  useEffect(() => {
+    const logoItems = window.document.querySelectorAll('.client__logo_image')
+    for (let i = 0; i < logoItems.length; i++) {
+      new Magnetic(logoItems[i], magnificConfig)
+    }
+  }, [])
+
   return (
     <section className={s.clients}>
       <div className={s.clients__inner}>
+        <img className={s.noise} src='/noise.png' alt='' />
         <ClientSectionCanvas
           firstColor='#C727FFFF'
           secondColor='#D167F6B2'
@@ -32,7 +49,7 @@ export const ClientSection = ({ clients, reviews }) => {
                   key={idx}
                   href={client.link}
                   target='_blank'
-                  className={s.clients__icon}
+                  className={cn(s.clients__icon, 'client__logo_image')}
                   rel='noreferrer'
                 >
                   <img src={client.image} alt={client.name} />
